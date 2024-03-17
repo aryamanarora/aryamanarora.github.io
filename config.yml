@@ -1,7 +1,7 @@
 baseURL: "https://aryaman.io/"
 title: "Aryaman Arora"
 paginate: 5
-theme: PaperMod
+theme: papermod
 
 enableRobotsTXT: true
 buildDrafts: false
