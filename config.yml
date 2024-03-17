@@ -17,13 +17,13 @@ minify:
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: "Aryaman Arora"
-  description: "ExampleSite description"
+  description: "Ph.D. Student, Computer Science @ Stanford. Researching interpretability."
   keywords: [Blog, Portfolio, PaperMod]
   author: "Me"
   # author: ["Me", "You"] # multiple authors
-  images: ["<link or path of image for opengraph, twitter-cards>"]
+  images: ["/icon.png"]
   DateFormat: "January 2, 2006"
-  defaultTheme: light # dark, light
+  defaultTheme: auto # dark, light
   disableThemeToggle: false
 
   ShowReadingTime: true
@@ -39,23 +39,23 @@ params:
   comments: false
   hidemeta: false
   hideSummary: false
-  showtoc: false
+  showtoc: true
   tocopen: false
   enableLatex: true
 
   assets:
     # disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
-    favicon: "<link / abs url>"
-    favicon16x16: "<link / abs url>"
-    favicon32x32: "<link / abs url>"
-    apple_touch_icon: "<link / abs url>"
-    safari_pinned_tab: "<link / abs url>"
+    favicon: "/icon.png"
+    favicon16x16: "/icon.png"
+    favicon32x32: "/icon.png"
+    apple_touch_icon: "/icon.png"
+    safari_pinned_tab: "/icon.png"
 
   label:
     text: "Aryaman Arora"
-    icon: /apple-touch-icon.png
-    iconHeight: 35
+    # icon: /icon.png
+    # iconHeight: 35
 
   # profile-mode
   profileMode:
@@ -147,9 +147,9 @@ menu:
     #   name: categories
     #   url: /categories/
     #   weight: 40
-    - identifier: tags
-      name: tags
-      url: /tags/
+    - identifier: search
+      name: search
+      url: /search/
       weight: 40
     # - identifier: example
     #   name: example.org

@@ -6,8 +6,8 @@
     <description>Recent content in Book on Aryaman Arora</description>
     <image>
       <title>Aryaman Arora</title>
-      <url>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>http://localhost:1313/icon.png</url>
+      <link>http://localhost:1313/icon.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
