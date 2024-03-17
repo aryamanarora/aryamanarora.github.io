@@ -1,0 +1,22 @@
+/*
+This is just a placeholder blank stylesheet so as to support adding custom styles budled with theme's default styles
+
+Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-css-with-themes-assets for more info
+*/
+
+.lil-tag {
+    background-color: var(--tertiary) !important;
+}
+
+.resource a svg {
+    height: 1em;
+    width: 1em;
+    margin-left: 0.3em;
+    color: var(--secondary);
+}
+
+.resource a {
+    box-shadow: none;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}

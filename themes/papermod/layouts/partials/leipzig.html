@@ -1,0 +1,9 @@
+{{ if .Page.Params.leipzig }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leipzig@latest/dist/leipzig.min.css">
+<script src="https://cdn.jsdelivr.net/npm/leipzig@latest/dist/leipzig.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        Leipzig().gloss()
+    }, false);
+</script>
+{{ end }}
