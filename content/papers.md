@@ -1,0 +1,53 @@
+---
+title: Papers
+aliases:
+    - "/pubs"
+---
+
+You can also see my profiles on [Google Scholar](https://scholar.google.com/citations?user=0-4GKw8AAAAJ&hl=en) and [Semantic Scholar](https://www.semanticscholar.org/author/Aryaman-Arora/1575802390).
+
+Also check out [acknowledgements](/acks).
+
+### 2024
+1. Zhengxuan Wu, Atticus Geiger, **Aryaman Arora**, Jing Huang, Zheng Wang, Noah D. Goodman, Christopher D. Manning, Christopher Potts. 2024. [pyvene: A library for understanding and improving PyTorch models via interventions](https://arxiv.org/abs/2403.07809). *arXiv:2403.07809*. {{<lin url="https://github.com/stanfordnlp/pyvene" name="github" >}} {{<lin url="https://twitter.com/ZhengxuanZenWu/status/1767963562960630113" name="twitter">}}
+2. **Aryaman Arora**, Dan Jurafsky, Christopher Potts. 2024. [CausalGym: Benchmarking causal interpretability methods on linguistic tasks](https://arxiv.org/abs/2402.12560). *arXiv:2402.12560*. {{<lin url="https://github.com/aryamanarora/causalgym" name="github" >}} {{<lin url="https://x.com/aryaman2020/status/1762215502926237779?s=20" name="twitter">}}
+3. Nay San, Georgios Paraskevopoulos, **Aryaman Arora**, Xiluo He, Prabhjot Kaur, Oliver Adams, Dan Jurafsky. 2024. [Predicting positive transfer for improved low-resource speech recognition using acoustic pseudo-tokens](https://arxiv.org/abs/2402.02302). In *SIGTYP*. {{<lin url="https://anonymous.4open.science/r/2FF2/README.md" name="github">}}
+4. Zhengxuan Wu, Atticus Geiger, Jing Huang, **Aryaman Arora**, Thomas Icard, Christopher Potts, and Noah D. Goodman. 2024. [A reply to Makelov et al. (2023)’s “interpretability illusion” arguments](https://arxiv.org/abs/2401.12631). *arXiv:2401.12631*. {{<lin url="https://github.com/stanfordnlp/pyvene" name="github" >}} {{<lin url="https://x.com/ZhengxuanZenWu/status/1750940728816247163?s=20" name="twitter">}}
+5. Kabilan Prasanna, **Aryaman Arora**. 2024. [IruMozhi: Automatically classifying diglossia in Tamil](https://arxiv.org/abs/2311.07804). In *Findings of NAACL*. {{<lin url="https://github.com/kebathan/diglossia" name="github" >}}
+
+### 2023
+6. Vedant Palit*, Rohan Pandey*, **Aryaman Arora**, Paul Pu Liang. 2023. [Towards vision-language mechanistic interpretability: A causal tracing tool for BLIP](https://arxiv.org/abs/2308.14179). In *5th Workshop on Closing the Loop
+Between Vision and Language*. {{<lin url="https://github.com/vedantpalit/Towards-Vision-Language-Mechanistic-Interpretability" name="github" >}}
+1. Omer Goldman, Khuyagbaatar Batsuren, Salam Khalifa, **Aryaman Arora**, Garrett Nicolai, Reut Tsarfaty, Ekaterina Vylomova. 2023. [SIGMORPHON–UniMorph 2023 Shared Task 0: Typologically diverse morphological inflection](https://aclanthology.org/2023.sigmorphon-1.13/). In *SIGMORPHON*. {{<lin url="https://github.com/sigmorphon/2023InflectionST" name="github" >}}
+1. **Aryaman Arora**, Adam Farris, Samopriya Basu, Suresh Kolichala. 2023. [Jambu: A historical linguistic database for South Asian languages](https://aclanthology.org/2023.sigmorphon-1.8/). In *SIGMORPHON*. {{<lin url="https://github.com/moli-mandala/data" name="github" >}} {{<lin url="https://neojambu.herokuapp.com/" name="link" >}}
+1. Brett Reynolds, **Aryaman Arora**, Nathan Schneider. 2023. [Unified syntactic annotation of English in the CGEL framework](https://aclanthology.org/2023.law-1.22/). In *LAW*. {{<lin url="https://github.com/nert-nlp/cgel" name="github" >}}
+1. **Aryaman Arora**. 2023. [Investigating induction heads in a small transformer language model](https://docs.google.com/presentation/d/1XyocheHUqMkjuoWVYNmdm7ep3nwjwIHpSwnM2Pwg0ZM/edit?usp=sharing). In *MASC-SLL*, Arlington, VA, USA. {{<lin url="https://github.com/aryamanarora/induction" name="github" >}}
+1. Nicholas Goldowsky-Dill, Chris MacLeod, Lucas Sato, **Aryaman Arora**. 2023. [Localizing model behavior with path patching](https://arxiv.org/abs/2304.05969). *arXiv:2304.05969*. {{<lin url="https://github.com/redwoodresearch/rust_circuit_public" name="github" >}} {{<lin url="https://twitter.com/aryaman2020/status/1648544361599180804?s=20" name="twitter" >}}
+
+### 2022
+12. Ryan Cotterell, Richard Futrell, Kyle Mahowald, Clara Meister, Tiago Pimentel, Adina Williams, **Aryaman Arora**. 2022. [Information theory in linguistics: Methods and applications](https://rycolab.io/classes/info-theory-tutorial/). In *COLING (tutorials)*. {{<lin url="https://colab.research.google.com/drive/16ay4Em4Ctn4ETUH1f5ww1JgzSJVk4G23?usp=sharing" name="link">}}
+1. Brett Reynolds, **Aryaman Arora**, Nathan Schneider. 2022. [CGELBank: CGEL as a framework for English syntax annotation](https://arxiv.org/abs/2210.00394). *arXiv:2210.00394*. {{<lin url="https://github.com/nert-nlp/cgel" name="github" >}}
+1. Jordan Kodner, ..., **Aryaman Arora**, ..., Ekaterina Vylomova. 2022. [SIGMORPHON–UniMorph 2022 Shared Task 0: Generalization and typologically diverse morphological inflection](https://aclanthology.org/2022.sigmorphon-1.19/). In *SIGMORPHON*. {{<lin url="https://github.com/sigmorphon/2022InflectionST" name="github" >}}
+1.  Khuyagbaatar Batsuren, Gábor Bella, **Aryaman Arora**, ..., Ryan Cotterell, Ekaterina Vylomova. 2022. [The SIGMORPHON 2022 Shared Task on Morpheme Segmentation](https://aclanthology.org/2022.sigmorphon-1.11/). In *SIGMORPHON*. {{<lin url="https://github.com/sigmorphon/2022SegmentationST" name="github" >}}
+1. **Aryaman Arora**. 2022. [Universal Dependencies for Punjabi](https://aclanthology.org/2022.lrec-1.613/). In *LREC*. {{<lin url="https://github.com/UniversalDependencies/UD_Punjabi-PunTB" name="github" >}}
+1. **Aryaman Arora**, Nitin Venkateswaran, Nathan Schneider. 2022. [MASALA: Modelling and analysing the semantics of adpositions in linguistic annotation of Hindi](https://aclanthology.org/2022.lrec-1.612/). In *LREC*. {{<lin url="https://github.com/aryamanarora/carmls-hi" name="github" >}}
+1. Khuyagbaatar Batsuren*, Omer Goldman*, ..., **Aryaman Arora**, ..., Ryan Cotterell, Reut Tsarfaty, Ekaterina Vylomova. 2022. [UniMorph 4.0: Universal Morphology](https://aclanthology.org/2022.lrec-1.89/). In *LREC*. {{<lin url="https://github.com/unimorph" name="github" >}}
+1. **Aryaman Arora**, Nathan Schneider, Brett Reynolds. 2022. [A CGEL-formalism English treebank](https://docs.google.com/presentation/d/1muLMZyNLspXElkWaOLfGQve64SxbapXkXJpWpgNmFWw/edit?usp=sharing). In *MASC-SLL*, Philadelphia, PA, USA. {{<lin url="https://github.com/nert-nlp/cgel" name="github" >}}
+1. **Aryaman Arora**, Clara Meister, Ryan Cotterell. 2022. [Estimating the entropy of linguistic distributions](https://aclanthology.org/2022.acl-short.20/). In *ACL*. {{<lin url="https://github.com/rycolab/entropy-estimation" name="github" >}} {{<lin url="https://twitter.com/aryaman2020/status/1522996992300904449" name="twitter">}}
+1. **Aryaman Arora**, Adam Farris, Samopriya Basu, Suresh Kolichala. 2022. [Computational historical linguistics and language diversity in South Asia](https://aclanthology.org/2022.acl-long.99/). In *ACL*. {{<lin url="https://twitter.com/aryaman2020/status/1528935903720353792" name="twitter">}}
+1. Adam Farris\*, **Aryaman Arora**\*. 2022. [DIPI: Dependency parsing for Ashokan Prakrit historical dialectology](https://docs.google.com/presentation/d/1VbVqK67wfUVuT6ESnC2QAccN1cr-o0aaz3TDQ7UjaP0/edit?usp=sharing). In *Towards a comparative historical dialectology: evidence from morphology and syntax, DGfS*, Tübingen, Germany. {{<lin url="https://github.com/UniversalDependencies/UD_Prakrit-DIPI" name="github" >}} {{<lin url="https://twitter.com/aryaman2020/status/1496763811583328259" name="twitter">}}
+
+### 2021
+23. Adam Farris\*, **Aryaman Arora**\*. 2021. [For the purpose of curry: A UD Treebank for Ashokan Prakrit](https://aclanthology.org/2021.udw-1.4/). In *UDW, SyntaxFest*. {{<lin url="https://github.com/UniversalDependencies/UD_Prakrit-DIPI" name="github" >}} {{<lin url="https://docs.google.com/presentation/d/1j2DtdvlVlYaTc3b-V-RFYDVaydaZ-URkJ_N_Iy5KT4w/edit?usp=sharing" name="link">}} {{<lin url="https://twitter.com/aryaman2020/status/1506016257589403651" name="twitter">}}
+1. **Aryaman Arora**, Adam Farris, Gopalakrishnan R, Samopriya Basu. 2021. [Bhāṣācitra: Visualising the dialect geography of South Asia](https://aclanthology.org/2021.lchange-1.7/). In *LChange*. {{<lin url="https://github.com/aryamanarora/bhasacitra" name="github">}} {{<lin url="https://docs.google.com/presentation/d/1PTw4zDP4XweJlGwOMqfB8tc7nnb30XFodJP25_jIqOU/edit?usp=sharing" name="link">}} {{<lin url="https://x.com/aryaman2020/status/1398301846935121920?s=20" name="twitter">}}
+1. **Aryaman Arora**, Ahmed Etebari. 2021. *[Kholosi Dictionary](https://zenodo.org/record/7901554)*. {{<lin url="https://github.com/aryamanarora/kholosi" name="github">}} {{<lin url="https://twitter.com/aryaman2020/status/1381399677610905605?s=20" name="twitter">}}
+2. **Aryaman Arora**, Nitin Venkateswaran, Nathan Schneider. 2021. [Adposition and case supersenses v1.0: Guidelines for Hindi–Urdu](http://arxiv.org/abs/2103.01399). *arXiv:2103.01399*. {{<lin url="https://github.com/aryamanarora/carmls-hi" name="github">}}
+3. **Aryaman Arora**, Nitin Venkateswaran, Nathan Schneider. 2021. [SNACS annotation of case markers and adpositions in Hindi](https://scholarworks.umass.edu/scil/vol4/iss1/57/). In *SCiL*. {{<lin url="https://github.com/aryamanarora/carmls-hi" name="github">}}
+
+### 2020
+28. Michael Kranzlein, Emma Manning, Siyao Peng, Shira Wein, **Aryaman Arora**, Nathan Schneider. 2020. [PASTRIE: A corpus of prepositions annotated with supsersense tags in Reddit International English](https://www.aclweb.org/anthology/2020.law-1.10/). In *LAW*. {{<lin url="https://github.com/mkranzlein/reddit-supersenses" name="github">}}
+1. **Aryaman Arora**, Nathan Schneider. 2020. [SNACS annotation of case markers and adpositions in Hindi](https://sigtyp.github.io/workshops/2020/papers/8.pdf). In *SIGTYP*. Non-archival extended abstract. {{<lin url="https://github.com/aryamanarora/carmls-hi" name="github">}} {{<lin url="https://twitter.com/aryaman2020/status/1329258701874728962?s=20" name="twitter">}}
+1. **Aryaman Arora**, Luke Gessler, Nathan Schneider. 2020. [Supervised grapheme-to-phoneme conversion of orthographic schwas in Hindi and Punjabi](https://www.aclweb.org/anthology/2020.acl-main.696). In *ACL*. {{<lin url="https://github.com/aryamanarora/schwa-deletion" name="github">}} {{<lin url="https://aryamanarora.github.io/schwa-deletion/presentation/" name="link">}}
+
+### 2019
+31. **Aryaman Arora**, John R. McIntyre. 2019. [Quasi-passive lower and upper extremity robotic exoskeleton for strengthening human locomotion](https://link.springer.com/chapter/10.1007/978-3-030-30421-8_1). In *Sustainable Innovation*.

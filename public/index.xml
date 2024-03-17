@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Aryaman Arora</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Aryaman Arora</description>
+    <image>
+      <title>Aryaman Arora</title>
+      <url>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 07 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why DAS may fail</title>
+      <link>http://localhost:1313/drafts/2024-01-07-illusion/</link>
+      <pubDate>Sun, 07 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/drafts/2024-01-07-illusion/</guid>
+      <description>Why DAS may fail Aryaman Arora
+January 7, 2024
+Recently, Makelov et al. (2023) claimed that distributed alignment search (DAS; Geiger et al., 2023) can produce an interpretability illusion that does not accurately tell us about model-internal feature directions but nevertheless learns an intervention that achieves the desired causal effect. The crux of their argument is that a one-dimensional DAS intervention may intervene along both:
+a causally disconnected direction that distinguishes between the source and base but is in the nullspace of all downstream model projections, i.</description>
+    </item>
+    <item>
+      <title>Interventional interpretability I: Causal abstraction</title>
+      <link>http://localhost:1313/drafts/2023-12-14-intervention/</link>
+      <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/drafts/2023-12-14-intervention/</guid>
+      <description>Overview of the new intervention-based methods for interpretability.</description>
+    </item>
+    <item>
+      <title>The Hittite problem</title>
+      <link>http://localhost:1313/posts/2023-08-10-causality/</link>
+      <pubDate>Thu, 10 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2023-08-10-causality/</guid>
+      <description>How do we interpret neural networks? We should start by comparing it to the geopolitical situation of early Indo-European Anatolia.</description>
+    </item>
+    <item>
+      <title>Me and Research</title>
+      <link>http://localhost:1313/posts/2023-03-28-research/</link>
+      <pubDate>Tue, 28 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2023-03-28-research/</guid>
+      <description>Looking back at my research journey in NLP after getting into a Ph.D. program.</description>
+    </item>
+    <item>
+      <title>Some intuitions about transformers</title>
+      <link>http://localhost:1313/posts/2022-12-24-transformers/</link>
+      <pubDate>Sat, 24 Dec 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2022-12-24-transformers/</guid>
+      <description>I&amp;#39;ve been thinking about transformers a lot recently.</description>
+    </item>
+    <item>
+      <title>Some CCG derivations in Hindi</title>
+      <link>http://localhost:1313/posts/2022-10-08-ccg/</link>
+      <pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2022-10-08-ccg/</guid>
+      <description>Learned about Combinatory Categorial Grammar in class, so I tried to apply it to Hindi.</description>
+    </item>
+    <item>
+      <title>NAACL 2022</title>
+      <link>http://localhost:1313/posts/2022-08-04-naacl/</link>
+      <pubDate>Thu, 04 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2022-08-04-naacl/</guid>
+      <description>NAACL was the best conference experience I&amp;#39;ve ever had, no doubt about it.</description>
+    </item>
+    <item>
+      <title>A machine-learned syntactic tagset?</title>
+      <link>http://localhost:1313/posts/2022-06-21-kitaev/</link>
+      <pubDate>Tue, 21 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2022-06-21-kitaev/</guid>
+      <description>Messing with the Kitaev et al. (2022) parser.</description>
+    </item>
+    <item>
+      <title>Secret verb forms in Hindi</title>
+      <link>http://localhost:1313/posts/2022-05-23-tam/</link>
+      <pubDate>Mon, 23 May 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2022-05-23-tam/</guid>
+      <description>There are some strange verb forms in Hindi that I haven&amp;#39;t seen described in any grammar or paper. I&amp;#39;ve collected some of them here.</description>
+    </item>
+    <item>
+      <title>The -kk- verbal extension in Indo-Aryan</title>
+      <link>http://localhost:1313/posts/2022-05-03-kk/</link>
+      <pubDate>Tue, 03 May 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2022-05-03-kk/</guid>
+      <description>After the fragmentation of Sanskrit, one of the innovative features that developed across the Indo-Aryan language family are the &amp;quot;pleonastic&amp;quot; suffixes, including (but not limited to) -kk-, -ḍ-, -r-, -l(l)-, and nominal diminutives -ka- (m.) and -ikā- (f.). Pleonastic means serving no semantic purpose; basically, the consensus has been that these suffixes merely served as phonological extensions to distinguish words after the collapse of many phonotactic distinctions from Sanskrit to Middle Indo-Aryan.</description>
+    </item>
+    <item>
+      <title>*ll in Indo-Aryan</title>
+      <link>http://localhost:1313/posts/2022-02-21-ll/</link>
+      <pubDate>Mon, 21 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2022-02-21-ll/</guid>
+      <description>Some notes on the development of *ll in Indo-Aryan.</description>
+    </item>
+    <item>
+      <title>Reflexive causatives in Hindi</title>
+      <link>http://localhost:1313/posts/2022-01-12-reflexive/</link>
+      <pubDate>Wed, 12 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2022-01-12-reflexive/</guid>
+      <description>A new kind of language change?</description>
+    </item>
+    <item>
+      <title>Sikk glossed</title>
+      <link>http://localhost:1313/posts/2021-09-07-sikk/</link>
+      <pubDate>Tue, 07 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2021-09-07-sikk/</guid>
+      <description>Gloss of the song by Muhammad Masood.</description>
+    </item>
+    <item>
+      <title>Greater Magadha</title>
+      <link>http://localhost:1313/posts/2021-05-13-greater-magadha/</link>
+      <pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2021-05-13-greater-magadha/</guid>
+      <description>Notes on the book by Johannes Bronkhorst.</description>
+    </item>
+    <item>
+      <title>Hindi is not Sanskrit: Phonetics and Phonology</title>
+      <link>http://localhost:1313/posts/2021-03-08-hindi-is-not-sanskrit/</link>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2021-03-08-hindi-is-not-sanskrit/</guid>
+      <description>Hindi is not &amp;#34;exactly like Sanskrit&amp;#34; despite what some nonsensical claims say.</description>
+    </item>
+    <item>
+      <title>Bhāṣācitra</title>
+      <link>http://localhost:1313/posts/2021-02-10-bhasacitra/</link>
+      <pubDate>Wed, 10 Feb 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2021-02-10-bhasacitra/</guid>
+      <description>Recently, I’ve been working on mapping the languages of South Asia by organising the scholarly work that has been done on individual varieties.</description>
+    </item>
+    <item>
+      <title>New Indo-Aryan conservatisms</title>
+      <link>http://localhost:1313/posts/2020-12-14-nia-conservatisms/</link>
+      <pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2020-12-14-nia-conservatisms/</guid>
+      <description>This is a list of Indo-Aryan lexical items whch can be traced to Indo-European yet have no preserved Sanskrit intermediaries.</description>
+    </item>
+    <item>
+      <title>Why Linguistics?</title>
+      <link>http://localhost:1313/posts/2020-12-12-why-linguistics/</link>
+      <pubDate>Sat, 12 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2020-12-12-why-linguistics/</guid>
+      <description>This is a question I’ve been dealing with ever since I went down this academic path, and one that I think I will continue to grapple with for a long time: what is the point of studying linguistics?</description>
+    </item>
+    <item>
+      <title>EMNLP 2020</title>
+      <link>http://localhost:1313/posts/2020-11-18-emnlp/</link>
+      <pubDate>Wed, 18 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2020-11-18-emnlp/</guid>
+      <description>Random stuff.</description>
+    </item>
+    <item>
+      <title>ACL 2020</title>
+      <link>http://localhost:1313/posts/2020-07-10-acl/</link>
+      <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2020-07-10-acl/</guid>
+      <description>ACL 2020 was the most exciting event in my life so far as a proto-computational linguist. This was my first conference, and my first published research paper.</description>
+    </item>
+    <item>
+      <title>Hindi adpositions</title>
+      <link>http://localhost:1313/posts/2020-06-02-snacs/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2020-06-02-snacs/</guid>
+      <description>These are just some notes about Hindi SNACS that I wanted to be publicly available. I would use Google Docs, but they don&amp;#39;t have good support for interlinear glosses. I would use Xposition, but I&amp;#39;m not really sure what the best place for it is there.</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>I am a first-year Ph.D. student at Stanford NLP advised by Dan Jurafsky and Christopher Potts. My research is focused on interpretability.
+I want to understand how neural networks (like language models) work. I believe that this is a tractable goal that can be accomplished in my lifetime. Some things I&amp;rsquo;ve been thinking about recently:
+How can we ensure that explanations of model behaviour are actually faithful? New methods grounded in causal inferences are promising, but we still need more theory, benchmarks, metrics, etc.</description>
+    </item>
+    <item>
+      <title>Acknowledgements</title>
+      <link>http://localhost:1313/acks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/acks/</guid>
+      <description>Being acknowledged is way cooler than being cited, so here&amp;rsquo;s a list of things I am acknowledged in.
+I would like to acknowledge Chenglei Si for giving me the idea to do this.
+List Chenglei Si, Yanzhe Zhang, Zhengyuan Yang, Ruibo Liu, Diyi Yang. 2024. Design2Code: How far are we from automating front-end engineering?. arXiv:2403.03163. Jirayu Burapacheep, Ishan Gaur, Agam Bhatia, Tristan Thrush. 2024. ColorSwap: A color and word order dataset for multimodal evaluation.</description>
+    </item>
+    <item>
+      <title>Papers</title>
+      <link>http://localhost:1313/papers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/papers/</guid>
+      <description>You can also see my profiles on Google Scholar and Semantic Scholar.
+Also check out acknowledgements.
+2024 Zhengxuan Wu, Atticus Geiger, Aryaman Arora, Jing Huang, Zheng Wang, Noah D. Goodman, Christopher D. Manning, Christopher Potts. 2024. pyvene: A library for understanding and improving PyTorch models via interventions. arXiv:2403.07809. Aryaman Arora, Dan Jurafsky, Christopher Potts. 2024. CausalGym: Benchmarking causal interpretability methods on linguistic tasks. arXiv:2402.12560. Nay San, Georgios Paraskevopoulos, Aryaman Arora, Xiluo He, Prabhjot Kaur, Oliver Adams, Dan Jurafsky.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,167 @@
+baseURL: "https://aryaman.io/"
+title: "Aryaman Arora"
+paginate: 5
+theme: PaperMod
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+googleAnalytics: G-W6HV8VE5SV
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+params:
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  title: "Aryaman Arora"
+  description: "ExampleSite description"
+  keywords: [Blog, Portfolio, PaperMod]
+  author: "Me"
+  # author: ["Me", "You"] # multiple authors
+  images: ["<link or path of image for opengraph, twitter-cards>"]
+  DateFormat: "January 2, 2006"
+  defaultTheme: light # dark, light
+  disableThemeToggle: false
+
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: false
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: true
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  comments: false
+  hidemeta: false
+  hideSummary: false
+  showtoc: false
+  tocopen: false
+  enableLatex: true
+
+  assets:
+    # disableHLJS: true # to disable highlight.js
+    # disableFingerprinting: true
+    favicon: "<link / abs url>"
+    favicon16x16: "<link / abs url>"
+    favicon32x32: "<link / abs url>"
+    apple_touch_icon: "<link / abs url>"
+    safari_pinned_tab: "<link / abs url>"
+
+  label:
+    text: "Aryaman Arora"
+    icon: /apple-touch-icon.png
+    iconHeight: 35
+
+  # profile-mode
+  profileMode:
+    enabled: true # needs to be explicitly set
+    title: "Aryaman Arora"
+    subtitle: "Ph.D. Student, Computer Science @ Stanford. Researching interpretability."
+    imageUrl: "/img/aryaman.jpg"
+    imageWidth: 120
+    imageHeight: 120
+    imageTitle: vibing
+    buttons:
+      - name: About
+        url: about
+      - name: Papers
+        url: papers
+      - name: Blog
+        url: posts
+    news:
+      - desc: "We released the [paper](https://arxiv.org/abs/2403.07809) for [pyvene](https://github.com/stanfordnlp/pyvene), a new library for intervening on the internal states of neural networks!"
+        date: "2024-03-13"
+      - desc: "My first lead-author project as a Ph.D. student is out: [CausalGym: Benchmarking causal interpretability methods on linguistic tasks](https://arxiv.org/abs/2402.12560)."
+        date: "2024-02-19"
+      - desc: "Moved to the San Francisco Bay Area 🌉 to start my Ph.D. 🫡"
+        date: "2023-09-14"
+      - desc: "Back from the Leiden University Summer School in Languages and Linguistics in the Netherlands!"
+        date: "2023-07-31"
+      - desc: "Accepted to the Ph.D. program at [Stanford CS](https://cs.stanford.edu/)!"
+        date: "2023-02-08"
+
+  # home-info mode
+  homeInfoParams:
+    Title: "Hi there \U0001F44B"
+    Content: Welcome to my blog
+
+  socialIcons:
+    - name: email
+      url: "mailto:aryamana@stanford.edu"
+    - name: googlescholar
+      url: "https://scholar.google.com/citations?user=0-4GKw8AAAAJ&hl=en"
+    - name: twitter
+      url: "https://twitter.com/aryaman2020"
+    - name: github
+      url: "https://github.com/aryamanarora"
+
+  analytics:
+    # google:
+    #   SiteVerificationTag: "G-W6HV8VE5SV"
+    # bing:
+    #   SiteVerificationTag: "XYZabc"
+    # yandex:
+    #   SiteVerificationTag: "XYZabc"
+
+  cover:
+    hidden: true # hide everywhere but not in structured data
+    hiddenInList: true # hide on list pages and home
+    hiddenInSingle: true # hide on single page
+
+  editPost:
+    # URL: "https://github.com/<path_to_repo>/content"
+    # Text: "Suggest Changes" # edit text
+    # appendFilePath: true # to append file path to Edit link
+
+  # for search
+  # https://fusejs.io/api/options.html
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
+    keys: ["title", "permalink", "summary", "content"]
+menu:
+  main:
+    - identifier: about
+      name: about
+      url: /about/
+      weight: 10
+    - identifier: papers
+      name: papers
+      url: /papers/
+      weight: 20
+    - identifier: blog
+      name: blog
+      url: /posts/
+      weight: 30
+    # - identifier: categories
+    #   name: categories
+    #   url: /categories/
+    #   weight: 40
+    - identifier: tags
+      name: tags
+      url: /tags/
+      weight: 40
+    # - identifier: example
+    #   name: example.org
+    #   url: https://example.org
+    #   weight: 30
+# Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
+pygmentsUseClasses: true
+markup:
+  highlight:
+    noClasses: false
+    # anchorLineNos: true
+    # codeFences: true
+    # guessSyntax: true
+    # lineNos: true
+    # style: monokai
