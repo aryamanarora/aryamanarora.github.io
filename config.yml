@@ -79,6 +79,8 @@ params:
         url: papers
       - name: Blog
         url: posts
+      - name: CV
+        url: pdf/resume.pdf
     news:
       - desc: "We released the [paper](https://arxiv.org/abs/2403.07809) for [pyvene](https://github.com/stanfordnlp/pyvene), a new library for intervening on the internal states of neural networks!"
         date: "2024-03-13"
