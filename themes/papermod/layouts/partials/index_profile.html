@@ -53,14 +53,14 @@
         </div>
         {{- end }}
         <div style="max-width: 500px; margin-top: 20px;" class="post-content">
-            <p>───────── ౨ৎ ─────────</p>
+            {{ partial "divider.html" }}
             <h4>Greatest hits</h4>
             <ul style="text-align: left; font-size: small;">
             {{- range .papers }}
                 <li>{{ .desc | markdownify }}</li>
             {{- end }}
             </ul>
-            <p>───────── ౨ৎ ─────────</p>
+            {{ partial "divider.html" }}
             <h4>News</h4>
             <ul style="text-align: left; font-size: small; max-height: 200px; overflow-y: auto; padding-right: 2px;">
             {{- range .news }}
