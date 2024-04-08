@@ -1,6 +1,6 @@
 <div class="profile">
     {{- with site.Params.profileMode }}
-    <div class="profile_inner">
+    <div class="profile_inner" style="max-width: 500px;">
         {{- if .imageUrl -}}
         {{- $img := "" }}
         {{- if not (urls.Parse .imageUrl).IsAbs }}
@@ -31,9 +31,8 @@
         {{- end }}
         {{- end }}
         <h1>{{ .title | default site.Title | markdownify }}</h1>
-        <span>{{ .subtitle | markdownify }}</span>
+        <span class="post-content">{{ .subtitle | markdownify }}</span>
         {{- partial "social_icons.html" -}}
-
         {{- with .buttons }}
         <div class="buttons">
             {{- range . }}
@@ -53,13 +52,21 @@
             {{- end }}
         </div>
         {{- end }}
-        <div style="font-size: small; max-width: 500px; margin-top: 50px;" class="post-content">
-            <h4>News</h4>
-            <div style="text-align: left; max-height: 300px; overflow-y: auto;">
-            {{- range .news }}
-                <p style="margin-bottom: 10px;"><code class="lil-tag">{{ .date }}</code> {{ .desc | markdownify }}</p>
+        <div style="max-width: 500px; margin-top: 20px;" class="post-content">
+            <p>───────── ౨ৎ ─────────</p>
+            <h4>Greatest hits</h4>
+            <ul style="text-align: left; font-size: small;">
+            {{- range .papers }}
+                <li>{{ .desc | markdownify }}</li>
             {{- end }}
-            </div>
+            </ul>
+            <p>───────── ౨ৎ ─────────</p>
+            <h4>News</h4>
+            <ul style="text-align: left; font-size: small; max-height: 200px; overflow-y: auto; padding-right: 2px;">
+            {{- range .news }}
+                <li style="margin-bottom: 10px;"><code class="lil-tag">{{ .date }}</code> {{ .desc | markdownify }}</li>
+            {{- end }}
+            </ul>
         </div>
     </div>
     {{- end}}
