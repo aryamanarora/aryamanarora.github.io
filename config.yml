@@ -73,7 +73,6 @@ params:
     imageHeight: 120
     imageTitle: vibing
     subtitle: "First-year Ph.D. student at [**Stanford NLP**](https://nlp.stanford.edu/)."
-    buttons:
     news:
       - desc: "New interp-inspired ultra-efficient finetuning method out: [ReFT](https://arxiv.org/abs/2404.03592) ([repo](https://github.com/stanfordnlp/pyreft/), [tweet](https://twitter.com/aryaman2020/status/1776331947566047410))."
         date: "2024-04-05"
