@@ -4,6 +4,7 @@ layout: post
 tags:
     - NLP
     - causality
+    - interp
 date: 2023-08-10
 description: "How do we interpret neural networks? We should start by comparing it to the geopolitical situation of early Indo-European Anatolia."
 ---

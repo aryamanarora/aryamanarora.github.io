@@ -1,6 +1,6 @@
 <div class="profile">
-    {{- with site.Params.profileMode }}
-    <div class="profile_inner" style="max-width: 500px;">
+    <div class="profile_inner" style="max-width: 600px;">
+        {{- with site.Params.profileMode }}
         {{- if .imageUrl -}}
         {{- $img := "" }}
         {{- if not (urls.Parse .imageUrl).IsAbs }}
@@ -52,22 +52,22 @@
             {{- end }}
         </div>
         {{- end }}
-        <div style="max-width: 500px; margin-top: 20px;" class="post-content">
-            {{ partial "divider.html" }}
-            <h4>Greatest hits</h4>
-            <ul style="text-align: left; font-size: small;">
-            {{- range .papers }}
-                <li>{{ .desc | markdownify }}</li>
-            {{- end }}
-            </ul>
-            {{ partial "divider.html" }}
-            <h4>News</h4>
-            <ul style="text-align: left; font-size: small; max-height: 200px; overflow-y: auto; padding-right: 2px;">
-            {{- range .news }}
-                <li style="margin-bottom: 10px;"><code class="lil-tag">{{ .date }}</code> {{ .desc | markdownify }}</li>
-            {{- end }}
-            </ul>
+        {{- end}}
+        <div style="max-width: 600px; margin-top: -20px; text-align: left;" class="post-content">
+        {{- if .Content }}
+        {{ .Content }}
+        {{- end }}
+        <h3>News</h3>
+        {{- with site.Params.profileMode }}
+        <ul style="text-align: left; font-size: small; padding-right: 2px; list-style-type: none; padding-left: 0; margin-left: 0;">
+        {{- range .news }}
+            <li style="margin-bottom: 10px;">
+                <code class="lil-tag">{{ .date }}</code>
+                {{ .desc | markdownify }}
+            </li>
+        {{- end }}
+        </ul>
+        {{- end }}
         </div>
     </div>
-    {{- end}}
 </div>

@@ -72,19 +72,8 @@ params:
     imageWidth: 120
     imageHeight: 120
     imageTitle: vibing
-    subtitle: "I am a first-year Ph.D. student at [**Stanford NLP**](https://nlp.stanford.edu/) advised by [Dan Jurafsky](http://web.stanford.edu/~jurafsky/) and [Christopher Potts](https://web.stanford.edu/~cgpotts/), and currently rotating with [Noah D. Goodman](https://cocolab.stanford.edu/ndg). My research is focused on **interpretability** of neural language models."
+    subtitle: "First-year Ph.D. student at [**Stanford NLP**](https://nlp.stanford.edu/)."
     buttons:
-      - name: About
-        url: about
-      - name: Papers
-        url: papers
-      - name: Blog
-        url: posts
-      - name: CV
-        url: pdf/resume.pdf
-    papers:
-      - desc: "Zhengxuan Wu*, **Aryaman Arora***, Zheng Wang, Atticus Geiger, Dan Jurafsky, Christopher D. Manning, Christopher Potts. 2024. [ReFT: Representation Finetuning for Language Models](https://arxiv.org/abs/2404.03592). *arXiv:2404.03592*."
-      - desc: "**Aryaman Arora**, Dan Jurafsky, Christopher Potts. 2024. [CausalGym: Benchmarking causal interpretability methods on linguistic tasks](https://arxiv.org/abs/2402.12560). *arXiv:2402.12560*."
     news:
       - desc: "New interp-inspired ultra-efficient finetuning method out: [ReFT](https://arxiv.org/abs/2404.03592) ([repo](https://github.com/stanfordnlp/pyreft/), [tweet](https://twitter.com/aryaman2020/status/1776331947566047410))."
         date: "2024-04-05"
@@ -145,10 +134,6 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
-    - identifier: about
-      name: about
-      url: /about/
-      weight: 10
     - identifier: papers
       name: papers
       url: /papers/
