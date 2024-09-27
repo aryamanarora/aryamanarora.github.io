@@ -405,3 +405,7 @@ img.in-text {
     display: inline;
     margin: auto;
 }
+
+.authors a {
+    color: var(--secondary) !important;
+}

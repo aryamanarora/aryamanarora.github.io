@@ -10,28 +10,41 @@ Also check out [acknowledgements](/acks).
 
 ### 2024
 {{<pub
-    title="ReFT: Representation Finetuning for Language Models"
+    title="Causal abstraction: A theoretical foundation for mechanistic interpretability"
+    authors="Atticus Geiger, Duligur Ibeling, Amir Zur, Maheep Chaudhary, Sonakshi Chauhan, Jing Huang, **Aryaman Arora**, Zhengxuan Wu, Noah Goodman, Christopher Potts, Thomas Icard"
+    venue="arXiv:2301.04709"
+    url="https://arxiv.org/abs/2301.04709"
+>}}
+{{<pub
+    title="ReFT: Representation finetuning for language models"
     authors="Zhengxuan Wu\*, **Aryaman Arora**\*, Zheng Wang, Atticus Geiger, Dan Jurafsky, Christopher D. Manning, Christopher Potts"
-    venue="arXiv:2404.03592"
+    venue="NeurIPS <span class=award>Spotlight</span>"
     url="https://arxiv.org/abs/2404.03592"
     github="https://github.com/stanfordnlp/pyreft"
     twitter="https://twitter.com/aryaman2020/status/1776331947566047410"
 >}}
 {{<pub
+    title="CausalGym: Benchmarking causal interpretability methods on linguistic tasks"
+    authors="**Aryaman Arora**, Dan Jurafsky, Christopher Potts"
+    venue="ACL <span class=award>Outstanding Paper</span> <span class=award>Senior Area Chair Award</span>"
+    url="https://arxiv.org/abs/2402.12560"
+    github="https://github.com/aryamanarora/causalgym"
+    twitter="https://x.com/aryaman2020/status/1762215502926237779?s=20"
+>}}
+{{<pub
     title="pyvene: A library for understanding and improving PyTorch models via interventions"
     authors="Zhengxuan Wu, Atticus Geiger, **Aryaman Arora**, Jing Huang, Zheng Wang, Noah D. Goodman, Christopher D. Manning, Christopher Potts"
-    venue="arXiv:2403.07809"
+    venue="NAACL: System Demonstrations"
     url="https://arxiv.org/abs/2403.07809"
     github="https://github.com/stanfordnlp/pyvene"
     twitter="https://twitter.com/ZhengxuanZenWu/status/1767963562960630113"
 >}}
 {{<pub
-    title="CausalGym: Benchmarking causal interpretability methods on linguistic tasks"
-    authors="**Aryaman Arora**, Dan Jurafsky, Christopher Potts"
-    venue="arXiv:2402.12560"
-    url="https://arxiv.org/abs/2402.12560"
-    github="https://github.com/aryamanarora/causalgym"
-    twitter="https://x.com/aryaman2020/status/1762215502926237779?s=20"
+    title="IruMozhi: Automatically classifying diglossia in Tamil"
+    authors="Kabilan Prasanna, **Aryaman Arora**"
+    venue="NAACL: Findings"
+    url="https://arxiv.org/abs/2311.07804"
+    github="https://github.com/kebathan/diglossia"
 >}}
 {{<pub
     title="Predicting positive transfer for improved low-resource speech recognition using acoustic pseudo-tokens"
@@ -48,19 +61,12 @@ Also check out [acknowledgements](/acks).
     github="https://github.com/stanfordnlp/pyvene"
     twitter="https://x.com/ZhengxuanZenWu/status/1750940728816247163?s=20"
 >}}
-{{<pub
-    title="IruMozhi: Automatically classifying diglossia in Tamil"
-    authors="Kabilan Prasanna, **Aryaman Arora**"
-    venue="Findings of NAACL"
-    url="https://arxiv.org/abs/2311.07804"
-    github="https://github.com/kebathan/diglossia"
->}}
 
 ### 2023
 {{<pub
     title="Towards vision-language mechanistic interpretability: A causal tracing tool for BLIP"
     authors="Vedant Palit\*, Rohan Pandey\*, **Aryaman Arora**, Paul Pu Liang"
-    venue="5th Workshop on Closing the Loop Between Vision and Language"
+    venue="5th Workshop on Closing the Loop Between Vision and Language (CLVL)"
     url="https://arxiv.org/abs/2308.14179"
     github="https://github.com/vedantpalit/Towards-Vision-Language-Mechanistic-Interpretability"
 >}}
@@ -87,6 +93,13 @@ Also check out [acknowledgements](/acks).
     github="https://github.com/nert-nlp/cgel"
 >}}
 {{<pub
+    title="CGELBank Annotation Manual v1.0"
+    authors="Brett Reynolds, Nathan Schneider, **Aryaman Arora**"
+    venue="arXiv:2305.17347"
+    url="https://arxiv.org/abs/2305.17347"
+    github="https://github.com/nert-nlp/cgel"
+>}}
+{{<pub
     title="Investigating induction heads in a small transformer language model"
     authors="**Aryaman Arora**"
     venue="MASC-SLL"
@@ -108,7 +121,7 @@ Also check out [acknowledgements](/acks).
 {{<pub
     title="Information theory in linguistics: Methods and applications"
     authors="Ryan Cotterell, Richard Futrell, Kyle Mahowald, Clara Meister, Tiago Pimentel, Adina Williams, **Aryaman Arora**"
-    venue="COLING (tutorials)"
+    venue="COLING (Tutorials)"
     url="https://colab.research.google.com/drive/16ay4Em4Ctn4ETUH1f5ww1JgzSJVk4G23?usp=sharing"
 >}}
 {{<pub
@@ -178,7 +191,7 @@ Also check out [acknowledgements](/acks).
 {{<pub
     title="DIPI: Dependency parsing for Ashokan Prakrit historical dialectology"
     authors="Adam Farris\*, **Aryaman Arora**\*"
-    venue="Towards a comparative historical dialectology: evidence from morphology and syntax, DGfS"
+    venue="Towards a comparative historical dialectology: evidence from morphology and syntax, Deutschen Gesellschaft für Sprachwissenschaft"
     location="Tübingen, Germany"
     github="https://github.com/UniversalDependencies/UD_Prakrit-DIPI"
     twitter="https://twitter.com/aryaman2020/status/1496763811583328259"

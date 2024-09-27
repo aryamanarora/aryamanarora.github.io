@@ -72,8 +72,14 @@ params:
     imageWidth: 120
     imageHeight: 120
     imageTitle: vibing
-    subtitle: "First-year Ph.D. student at [**Stanford NLP**](https://nlp.stanford.edu/)."
+    subtitle: "Second-year Ph.D. student at [**Stanford NLP**](https://nlp.stanford.edu/)."
     news:
+      - desc: "ReFT will be a spotlight paper at [NeurIPS 2024](https://neurips.cc/Conferences/2024)."
+        date: "2024-09-26"
+      - desc: "CausalGym won an **outstanding paper award** at [ACL 2024](https://2024.aclweb.org) 🇹🇭"
+        date: "2024-08-16"
+      - desc: "Presented pyvene and IruMozhi at [NAACL 2024](https://2024.naacl.org) 🇲🇽"
+        date: "2024-06-21"
       - desc: "New interp-inspired ultra-efficient finetuning method out: [ReFT](https://arxiv.org/abs/2404.03592) ([repo](https://github.com/stanfordnlp/pyreft/), [tweet](https://twitter.com/aryaman2020/status/1776331947566047410))."
         date: "2024-04-05"
       - desc: "We released the [paper](https://arxiv.org/abs/2403.07809) for [pyvene](https://github.com/stanfordnlp/pyvene), a new library for intervening on the internal states of neural networks!"
