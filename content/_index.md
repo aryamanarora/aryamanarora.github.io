@@ -31,6 +31,24 @@ Hit me up on Twitter or at aryamana [at] stanford [dot] edu.
     github="https://github.com/aryamanarora/causalgym"
     twitter="https://x.com/aryaman2020/status/1762215502926237779?s=20"
 >}}
+{{<pub
+    title="Estimating the entropy of linguistic distributions"
+    authors="**Aryaman Arora**, Clara Meister, Ryan Cotterell"
+    venue="ACL"
+    location="2022"
+    url="https://aclanthology.org/2022.acl-short.20/"
+    github="https://github.com/rycolab/entropy-estimation"
+    twitter="https://twitter.com/aryaman2020/status/1522996992300904449"
+>}}
+{{<pub
+    title="Supervised grapheme-to-phoneme conversion of orthographic schwas in Hindi and Punjabi"
+    authors="**Aryaman Arora**, Luke Gessler, Nathan Schneider"
+    venue="ACL"
+    location="2020"
+    url="https://www.aclweb.org/anthology/2020.acl-main.696"
+    github="https://github.com/aryamanarora/schwa-deletion"
+    link="https://aryamanarora.github.io/schwa-deletion/presentation/"
+>}}
 
 <div style="width: 100%; text-align: center;">
     <a class="button" href="/papers" rel="noopener" title="{{ .name }}">

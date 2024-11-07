@@ -10,6 +10,13 @@ Also check out [acknowledgements](/acks).
 
 ### 2024
 {{<pub
+    title="Bayesian scaling laws for in-context learning"
+    authors="**Aryaman Arora**, Dan Jurafsky, Christopher Potts, Noah D. Goodman"
+    venue="arXiv:2410.16531"
+    url="https://arxiv.org/abs/2410.16531"
+    github="https://github.com/aryamanarora/bayesian-laws-icl"
+>}}
+{{<pub
     title="Causal abstraction: A theoretical foundation for mechanistic interpretability"
     authors="Atticus Geiger, Duligur Ibeling, Amir Zur, Maheep Chaudhary, Sonakshi Chauhan, Jing Huang, **Aryaman Arora**, Zhengxuan Wu, Noah Goodman, Christopher Potts, Thomas Icard"
     venue="arXiv:2301.04709"

@@ -74,7 +74,9 @@ params:
     imageTitle: vibing
     subtitle: "Second-year Ph.D. student at [**Stanford NLP**](https://nlp.stanford.edu/)."
     news:
-      - desc: "ReFT will be a spotlight paper at [NeurIPS 2024](https://neurips.cc/Conferences/2024)."
+      - desc: "Just dropped the paper for my rotation project with Noah Goodman: [Bayesian scaling laws for in-context learning](https://arxiv.org/abs/2410.16531)."
+        date: "2024-11-04"
+      - desc: "ReFT will be a spotlight paper at [NeurIPS 2024](https://neurips.cc/Conferences/2024) 🇨🇦"
         date: "2024-09-26"
       - desc: "CausalGym won an **outstanding paper award** at [ACL 2024](https://2024.aclweb.org) 🇹🇭"
         date: "2024-08-16"
