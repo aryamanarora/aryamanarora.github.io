@@ -34,6 +34,7 @@
 
 .post-content {
     color: var(--content);
+    text-align: justify !important;
 }
 
 .post-content h3,
@@ -51,6 +52,8 @@
 .post-content h2 {
     margin: 32px auto 24px;
     font-size: 32px;
+    line-height: 1.125;
+    border-bottom: 1px dotted var(--primary);
 }
 
 .post-content h3 {
@@ -408,4 +411,44 @@ img.in-text {
 
 .authors a {
     color: var(--secondary) !important;
+}
+
+.footnotes ol {
+    list-style-type: none;
+    counter-reset: footnote;
+    padding-left: calc(var(--gap) * 1.5);
+}
+
+.footnotes ol li {
+    position: relative;
+    counter-increment: footnote;
+    border-left: 1px dotted var(--primary);
+    padding: calc(var(--gap) * 0.5) calc(var(--gap) * 0.75);
+    margin-bottom: var(--gap);
+}
+
+.footnotes ol li::before {
+    content: "";
+}
+
+.footnotes ol li a:last-child::before {
+    content: counter(footnote);
+    position: absolute;
+    left: calc(var(--gap) * -1.5);
+    top: 0;
+    width: calc(var(--gap) * 1.5);
+    height: calc(var(--gap) * 1.5);
+    line-height: calc(var(--gap) * 1.5);
+    text-align: center;
+    border: 1px dotted var(--primary);
+    background: var(--code-bg);
+    color: var(--primary);
+    transition: all 0.2s ease-in-out;
+}
+
+
+.footnotes ol li a:last-child:hover::before {
+    transform: scale(1.1);
+    background: var(--primary);
+    color: var(--code-bg);
 }

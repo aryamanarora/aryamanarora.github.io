@@ -53,13 +53,13 @@
         </div>
         {{- end }}
         {{- end}}
-        <div style="max-width: 600px; margin-top: -20px; text-align: left;" class="post-content">
+        <div style="margin-top: -20px;" class="post-content">
         {{- if .Content }}
         {{ .Content }}
         {{- end }}
         <h3>News</h3>
         {{- with site.Params.profileMode }}
-        <ul style="text-align: left; font-size: small; padding-right: 2px; list-style-type: none; padding-left: 0; margin-left: 0;">
+        <ul style="font-size: smaller; padding-right: 2px; list-style-type: none; padding-left: 0; margin-left: 0;">
         {{- range .news }}
             <li style="margin-bottom: 10px;">
                 <code class="lil-tag">{{ .date }}</code>

@@ -24,11 +24,15 @@ h6 {
 }
 
 body {
+    /* font-family: "Source Serif Pro", serif; */
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 18px;
-    line-height: 1.6;
+    line-height: 1.5;
     word-break: break-word;
     background: var(--theme);
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
 }
 
 article,
@@ -115,4 +119,10 @@ textarea:-webkit-autofill {
 img {
     display: block;
     max-width: 100%;
+}
+
+sup {
+    line-height: 0;
+    font-size: 0.83em;
+    vertical-align: super;
 }

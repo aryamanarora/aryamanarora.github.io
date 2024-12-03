@@ -153,6 +153,10 @@ menu:
     #   name: categories
     #   url: /categories/
     #   weight: 40
+    - identifier: about
+      name: about
+      url: /about/
+      weight: 35
     - identifier: search
       name: search
       url: /search/
