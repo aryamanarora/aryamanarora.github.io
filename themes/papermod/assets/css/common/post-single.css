@@ -34,7 +34,7 @@
 
 .post-content {
     color: var(--content);
-    text-align: justify !important;
+    text-align: left !important;
 }
 
 .post-content h3,

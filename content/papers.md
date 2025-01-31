@@ -8,6 +8,15 @@ You can also see my profiles on [Google Scholar](https://scholar.google.com/cita
 
 Also check out [acknowledgements](/acks).
 
+### 2025
+{{<pub
+    title="AxBench: Steering LLMs? Even simple baselines outperform sparse autoencoders"
+    authors="Zhengxuan Wu\*, **Aryaman Arora**\*, Atticus Geiger, Zheng Wang, Jing Huang, Dan Jurafsky, Christopher D. Manning, Christopher Potts"
+    venue="arXiv:2501.17148"
+    url="https://arxiv.org/abs/2501.17148"
+    github="https://github.com/stanfordnlp/axbench"
+>}}
+
 ### 2024
 {{<pub
     title="Bayesian scaling laws for in-context learning"
