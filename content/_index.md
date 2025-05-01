@@ -14,7 +14,15 @@ Hit me up on Twitter or at aryamana [at] stanford [dot] edu.
 
 ### Greatest hits
 {{<pub
-    title="ReFT: Representation finetuning for language models"
+    title="<small>AxBench: Steering LLMs? Even simple baselines outperform sparse autoencoders</small>"
+    authors="Zhengxuan Wu\*, **Aryaman Arora**\*, Atticus Geiger, Zheng Wang, Jing Huang, Dan Jurafsky, Christopher D. Manning, Christopher Potts"
+    venue="ICML <span class=award>Spotlight</span>"
+    location="2025"
+    url="https://arxiv.org/abs/2501.17148"
+    github="https://github.com/stanfordnlp/axbench"
+>}}
+{{<pub
+    title="<small>ReFT: Representation finetuning for language models</small>"
     authors="Zhengxuan Wu\*, **Aryaman Arora**\*, Zheng Wang, Atticus Geiger, Dan Jurafsky, Christopher D. Manning, Christopher Potts"
     venue="NeurIPS <span class=award>Spotlight</span>"
     location="2024"
@@ -23,7 +31,7 @@ Hit me up on Twitter or at aryamana [at] stanford [dot] edu.
     twitter="https://twitter.com/aryaman2020/status/1776331947566047410"
 >}}
 {{<pub
-    title="CausalGym: Benchmarking causal interpretability methods on linguistic tasks"
+    title="<small>CausalGym: Benchmarking causal interpretability methods on linguistic tasks</small>"
     authors="**Aryaman Arora**, Dan Jurafsky, Christopher Potts"
     venue="ACL <span class=award>Outstanding Paper</span> <span class=award>Senior Area Chair Award</span>"
     location="2024"
@@ -32,22 +40,13 @@ Hit me up on Twitter or at aryamana [at] stanford [dot] edu.
     twitter="https://x.com/aryaman2020/status/1762215502926237779?s=20"
 >}}
 {{<pub
-    title="Estimating the entropy of linguistic distributions"
+    title="<small>Estimating the entropy of linguistic distributions</small>"
     authors="**Aryaman Arora**, Clara Meister, Ryan Cotterell"
     venue="ACL"
     location="2022"
     url="https://aclanthology.org/2022.acl-short.20/"
     github="https://github.com/rycolab/entropy-estimation"
     twitter="https://twitter.com/aryaman2020/status/1522996992300904449"
->}}
-{{<pub
-    title="Supervised grapheme-to-phoneme conversion of orthographic schwas in Hindi and Punjabi"
-    authors="**Aryaman Arora**, Luke Gessler, Nathan Schneider"
-    venue="ACL"
-    location="2020"
-    url="https://www.aclweb.org/anthology/2020.acl-main.696"
-    github="https://github.com/aryamanarora/schwa-deletion"
-    link="https://aryamanarora.github.io/schwa-deletion/presentation/"
 >}}
 
 <div style="width: 100%; text-align: center;">

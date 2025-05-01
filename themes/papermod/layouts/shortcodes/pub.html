@@ -1,5 +1,9 @@
-<div style="margin-bottom: 1em;">
-<a href="{{ .Get "url" }}">{{ .Get "title" | markdownify }}</a>.<br>
+<div style="margin-bottom: 1em; display: flex; align-items: flex-start; gap: 1em;">
+{{ if .Get "image" }}
+<img src="{{ .Get "image" }}" alt="{{ .Get "title" }}" style="width: 150px; height: 150px; object-fit: contain; border-radius: 5%; flex-shrink: 0; padding: 0; margin: 0; background-color: var(--code-block-bg);">
+{{ end }}
+<div>
+<a href="{{ .Get "url" }}" style="font-size: larger;">{{ .Get "title" | markdownify }}</a>.<br>
 <div style="line-height: 1.4; font-size: smaller; color: var(--secondary);">
 <span class="authors">{{ .Get "authors" | markdownify }}</span>.<br>
 <span><em>{{ .Get "venue" | markdownify }}</em>{{ if .Get "location" }}, {{ .Get "location" }}{{ end }}</span>
@@ -12,5 +16,6 @@
 {{ if .Get "link" }}
 <span class="resource"><a href="{{ .Get "link" | safeURL }}">{{ partial "svg.html" (dict "name" "link")}}</a></span>
 {{ end }}
+</div>
 </div>
 </div>

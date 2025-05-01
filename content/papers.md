@@ -12,9 +12,10 @@ Also check out [acknowledgements](/acks).
 {{<pub
     title="AxBench: Steering LLMs? Even simple baselines outperform sparse autoencoders"
     authors="Zhengxuan Wu\*, **Aryaman Arora**\*, Atticus Geiger, Zheng Wang, Jing Huang, Dan Jurafsky, Christopher D. Manning, Christopher Potts"
-    venue="arXiv:2501.17148"
+    venue="ICML <span class=award>Spotlight</span>"
     url="https://arxiv.org/abs/2501.17148"
     github="https://github.com/stanfordnlp/axbench"
+    image="/img/papers/2025-axbench.png"
 >}}
 
 ### 2024
@@ -24,12 +25,14 @@ Also check out [acknowledgements](/acks).
     venue="arXiv:2410.16531"
     url="https://arxiv.org/abs/2410.16531"
     github="https://github.com/aryamanarora/bayesian-laws-icl"
+    image="/img/papers/2024-bayesian.png"
 >}}
 {{<pub
     title="Causal abstraction: A theoretical foundation for mechanistic interpretability"
     authors="Atticus Geiger, Duligur Ibeling, Amir Zur, Maheep Chaudhary, Sonakshi Chauhan, Jing Huang, **Aryaman Arora**, Zhengxuan Wu, Noah Goodman, Christopher Potts, Thomas Icard"
     venue="arXiv:2301.04709"
     url="https://arxiv.org/abs/2301.04709"
+    image="/img/papers/2024-mechinterp.png"
 >}}
 {{<pub
     title="ReFT: Representation finetuning for language models"
@@ -38,6 +41,7 @@ Also check out [acknowledgements](/acks).
     url="https://arxiv.org/abs/2404.03592"
     github="https://github.com/stanfordnlp/pyreft"
     twitter="https://twitter.com/aryaman2020/status/1776331947566047410"
+    image="/img/papers/2024-reft.png"
 >}}
 {{<pub
     title="CausalGym: Benchmarking causal interpretability methods on linguistic tasks"
@@ -46,6 +50,7 @@ Also check out [acknowledgements](/acks).
     url="https://arxiv.org/abs/2402.12560"
     github="https://github.com/aryamanarora/causalgym"
     twitter="https://x.com/aryaman2020/status/1762215502926237779?s=20"
+    image="/img/papers/2024-causalgym.png"
 >}}
 {{<pub
     title="pyvene: A library for understanding and improving PyTorch models via interventions"
@@ -54,6 +59,7 @@ Also check out [acknowledgements](/acks).
     url="https://arxiv.org/abs/2403.07809"
     github="https://github.com/stanfordnlp/pyvene"
     twitter="https://twitter.com/ZhengxuanZenWu/status/1767963562960630113"
+    image="/img/papers/2024-pyvene.png"
 >}}
 {{<pub
     title="IruMozhi: Automatically classifying diglossia in Tamil"
@@ -61,6 +67,7 @@ Also check out [acknowledgements](/acks).
     venue="NAACL: Findings"
     url="https://arxiv.org/abs/2311.07804"
     github="https://github.com/kebathan/diglossia"
+    image="/img/papers/2024-irumozhi.png"
 >}}
 {{<pub
     title="Predicting positive transfer for improved low-resource speech recognition using acoustic pseudo-tokens"
@@ -68,6 +75,7 @@ Also check out [acknowledgements](/acks).
     venue="SIGTYP"
     url="https://arxiv.org/abs/2402.02302"
     github="https://anonymous.4open.science/r/2FF2/README.md"
+    image="/img/papers/2024-speech.png"
 >}}
 {{<pub
     title="A reply to Makelov et al. (2023)’s “interpretability illusion” arguments"
@@ -76,6 +84,7 @@ Also check out [acknowledgements](/acks).
     url="https://arxiv.org/abs/2401.12631"
     github="https://github.com/stanfordnlp/pyvene"
     twitter="https://x.com/ZhengxuanZenWu/status/1750940728816247163?s=20"
+    image="/img/papers/2024-makelov.png"
 >}}
 
 ### 2023

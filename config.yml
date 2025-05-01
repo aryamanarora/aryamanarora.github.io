@@ -74,9 +74,11 @@ params:
     imageTitle: vibing
     subtitle: "Second-year Ph.D. student at [**Stanford NLP**](https://nlp.stanford.edu/)."
     news:
-      - desc: "Just dropped the paper for my rotation project with Noah Goodman: [Bayesian scaling laws for in-context learning](https://arxiv.org/abs/2410.16531)."
+      - desc: "AxBench will be a **spotlight** paper at [ICML 2025](https://icml.cc/Conferences/2025) 🇨🇦 (this will be the second time me and Zen are presenting a spotlight paper together in Vancouver...)"
+        date: "2025-05-01"
+      - desc: "[Bayesian scaling laws for in-context learning](https://arxiv.org/abs/2410.16531) w/ Noah Goodman"
         date: "2024-11-04"
-      - desc: "ReFT will be a spotlight paper at [NeurIPS 2024](https://neurips.cc/Conferences/2024) 🇨🇦"
+      - desc: "ReFT will be a **spotlight** paper at [NeurIPS 2024](https://neurips.cc/Conferences/2024) 🇨🇦"
         date: "2024-09-26"
       - desc: "CausalGym won an **outstanding paper award** at [ACL 2024](https://2024.aclweb.org) 🇹🇭"
         date: "2024-08-16"
