@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aryaman Arora</title>
+  <meta name="description" content="Aryaman Arora: NLP Researcher">
+  <meta property="og:title" content="Aryaman Arora">
+  <meta property="og:description" content="NLP Researcher">
+  <link rel="canonical" href="https://aryamanarora.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@aryaman2020">
+  <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+  <p style="font-size: 24px; font-weight: 600;"><a href="/index.html">Aryaman Arora</a> » <a href="/blog.html">Blog</a> » EMNLP 2020</p>
+
+  <h2>Cool Papers</h2>
+<h2>Notes</h2>
+<h3>Claire Cardie: Information Extraction</h3>
+<p><em>Nov 16, 10:00 AM</em></p>
+<p>Claire Cardie delivered a really cool keynote on information extraction from a historical perspective. (Surprising and uncomfortable how much NLP research started out with U.S. military applications.) My notes here don't make sense, it's just for me to note down things to read since I didn't know information extraction was a thing!</p>
+<p>One thing to think about: <strong>Can we use information extraction techniques to build useful resources for low-resource languages?</strong> I'm thinking extracting data from the currently unstructured <a href="https://dsalsrv04.uchicago.edu/dictionaries/">DSAL dictionaries</a> for example, or the recent effort to do so from <a href="https://spraakbanken.gu.se/blogg/index.php/2020/09/01/griersons-linguistic-survey-of-india-as-open-access-digital-data-resource-for-studying-languages-of-south-asia/">The Linguistic Survey of India</a>.</p>
+<ul>
+<li>NER: Akbik et al. (2018, 2019) [CoNLL 03]</li>
+<li>relation extraction/classification: Soares et al. (2019)</li>
+<li>Miwa & Bansal (2016), Zhang et al. (2017), Wang et al. (2018), Luan et al. (2019), Wadden et al. (2019)</li>
+<li>event extraction (CNNs, RNNs)
+<ul>
+    <li>ACE same sentence tho</li>
+</ul>
+</li>
+<li>Ralph Grishman</li>
+</ul>
+<h3>BOAF: Semantics</h3>
+<em>Nov 17, 4:00 PM</em>
+<blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">The lexical semantics session at <a href="https://twitter.com/hashtag/emnlp2020?src=hash&amp;ref_src=twsrc%5Etfw">#emnlp2020</a> was super cool yet again. Some of the neat questions discussed:<br><br>1. How much do we need explicit linguistic data (things like syntax trees) in our models? Seems like NLP is moving towards learning those implicitly.</p>&mdash; Āryaman Arora 𑀆𑀭𑁆𑀬𑀫𑀦 𑀅𑀭𑁄𑀭𑀸 (@aryaman2020) <a href="https://twitter.com/aryaman2020/status/1328825182320996359?ref_src=twsrc%5Etfw">November 17, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<ul>
+<li>
+    <a href="https://sivareddy.in/">Siva Reddy</a>, <a href="http://www.dipanjandas.com/">Dipanjan Das</a>, <a href="http://cs.brown.edu/people/epavlick/">Ellie Pavlick</a>, <a href="https://matt-gardner.github.io/">Matt Gardner</a>, <a href="https://web.stanford.edu/~cgpotts/">Chris Potts</a>.
+</li>
+<li>
+    Move to contextual representations is a better approximation of how linguistics thinks about language (Chris Potts), explicit linguistic structures [I suppose things like POS tags, dependencies, etc., "explicit things like a parser"] is going to be declining as we have better models that don't need that information and can learn it implicitly (Matt Gardner).
+</li>
+<li>
+    [I am reminded of <a href="http://ai.stanford.edu/blog/finding-crosslingual-syntax/">Ethan A. Chi's work on extracting syntactic representations from mBERT</a>].
+</li>
+<li>
+    Nathan Schneider: Can NLP work towards helping linguistics too? (Seems like we only talk about the other way).
+</li>
+<li>
+    Dipanjan Das: We have not yet fully explored the capabilities of transformers and other masked LMs, we should not discount them and say diminishing returns are inevitable. Example given of multi-digit arithmetic skills appearing with greater inputs. [but GPT-3 is huge! at what point do we draw the line? humans do more with far less.]
+</li>
+<li>
+    Ellie Pavlick: We can't pick up world knowledge or even full level human-level language just from masked LMs ("hints" on the internet can be picked up), there's got to be a more efficient [multimodal?] way. But it is very possible that an NN can have human-level language skill, just not the current masked LM approach.
+</li>
+<li><a href="https://proceedings.neurips.cc/paper/2020/file/fc84ad56f9f547eb89c72b9bac209312-Paper.pdf">multi-hop reasoning</a></li>
+<li>
+    Why only text-in text-out? "Fundamentally awkward" way to think about language (Pavlick). Need embodying in the world. [What the heck even is language? Why are we using text as a proxy? I wonder why NLP work doesn't deal with, like, speech directly (outside ASR which is just a way to interpret into text).]
+</li>
+<li>
+    <a href="https://arxiv.org/abs/2003.10555">"ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators." Kevin Clark, Minh-Thang Luong, Quoc V. Le, Christopher D. Manning.</a>
+</li>
+<li>
+    Linguistic vs. world knowledge, not a division actually reflected in masked language models which are learning both together. Lead to rethinking linguistics?
+</li>
+<li>
+    Potts: Deep learning isn't gonna replace linguistics!
+</li>
+</ul>
+<h3>Blackboxes</h3>
+<ul>
+<li>Black-box explanation methods (LME, SHAP, Partial dependence) are when you don't have the training data, glass-box (EBM) when you do.</li>
+<li>Accuracy vs. intelligibility tradeoff? No longer the case necessarily, thanks to <strong>explainable boosting machines</strong>. Comparable to full-complexity models.</li>
+<li>EBMs are a type of generalised additive models (GAM) i.e. sums of functions or sums of functions of pairwise interactions.</li>
+<li><a href="https://github.com/interpretml/interpret">https://github.com/interpretml/interpret</a></li>
+</ul>
+</body>
+
+</html>

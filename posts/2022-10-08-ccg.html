@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aryaman Arora</title>
+  <meta name="description" content="Aryaman Arora: NLP Researcher">
+  <meta property="og:title" content="Aryaman Arora">
+  <meta property="og:description" content="NLP Researcher">
+  <link rel="canonical" href="https://aryamanarora.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@aryaman2020">
+  <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+  <p style="font-size: 24px; font-weight: 600;"><a href="/index.html">Aryaman Arora</a> » <a href="/blog.html">Blog</a> » Some CCG derivations in Hindi</p>
+  <p>Combinatory Categorial Grammar (CCG) is one of the many, many (far
+    too many) syntactic formalisms posited by linguists in the Chomskyian
+    era. CCG has been outlined in work by Mark Steedman, the most recent
+    guide being <a
+    href="https://www.google.com/books/edition/The_Syntactic_Process/5LJaEAAAQBAJ?hl=en&amp;gbpv=0">his
+    2001 book</a> which I have to read for a class.</p>
+    <style>
+        td, th, .ccg {
+            border: 0px;
+        }
+        .ccg td, .ccg th {
+            text-align: center;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .ccg th {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .ccg td {
+            padding-bottom: 7px;
+            position: relative;
+            font-style: italic;
+        }
+        .ccg td::before {
+            font-size: 1em;
+            line-height: 1em;
+            display: block;
+            content: attr(data-trans);
+            position: absolute;
+            top: -9.5px;
+            right: 0px;
+            background-color: var(--light);
+            font-style: normal;
+        }
+        .ccg td {
+            padding-bottom: 7px;
+            position: relative;
+            font-style: italic;
+        }
+        .ccg td[data-trans] {
+            padding-top: 0;
+            border-top: 1px solid black !important;
+        }
+        ol {
+            list-style-type: none;
+        }
+        ol > li:before {
+            content: '(' counter(bruh) ')';
+            position: absolute;
+            left: -2em;
+        }
+        ol > li {
+            counter-increment: bruh;
+            position: relative;
+        }
+    </style>
+    <p>Unlike most other syntactic theories, I find the mechanics of CCG
+    very elegant. There is no difference between the distributional
+    categorisation of a lexeme and the argument structure that it has; both
+    are neatly contained in the CCG type system, and the connections to type
+    theory just work out very nicely (with the caveat that this is in my
+    limited understanding of type theory).</p>
+    <p>Naturally, I was thinking about how CCG would be applied to Hindi
+    syntax. This isn’t anything novel (see this <a
+    href="https://link.springer.com/article/10.1007/s10579-017-9379-6">2017
+    paper</a> on exactly that) but for my own edification I wanted to see
+    how flexible CCG is across languages. Here’s CCG analysis of some simply
+    clauses in Hindi; as you can see, all the derivations proceed backwards,
+    which makes sense since Hindi is pretty left-branching.</p>
+    <ol type="1">
+    <li><p><img src="/static/img/ccg/1.png" /></p></li>
+    <li><p><img src="/static/img/ccg/2.png" /></p></li>
+    </ol>
+    <p>So, those were pretty straightforward; note that I also included a
+    weak functional representation of the semantics in the same lambda
+    calculus of Steedman. You can see that the familiar (S)/NP of English is
+    replaced with (S), corresponding to SOV structure in Hindi (both verbal
+    arguments are to the left). I do wonder how a language where the object
+    is further than the subject would work though.</p>
+    <p>Here’s a more complex clause, with a ditransitive verb as well as
+    another example with non-canonical word ordering. The preferred way to
+    analyse non-SOV orderings (which are canonical in Hindi) is with
+    type-raising and then forward composition (a rare rightwards
+    derivation). I am reminded of how CCG handles relative clauses in
+    English, which have screwed-up word order due to an argument being moved
+    out of the clause.</p>
+    <ol start="3" type="1">
+    <li><p><img src="/static/img/ccg/3.png" /></p></li>
+    <li><p><img src="/static/img/ccg/4.png" /></p></li>
+    </ol>
+    <p>One thing I would like to explore is ergativity. Ergativity has been
+    studied to death by Hindi linguists, unfortunately. But I like how you
+    can easily express the verbal ergative agreement using a feature on the
+    subject, which even works well where a serial verb overrides the
+    agreement of a main verb. Also, check out all the nice left
+    derivations!</p>
+    <ol start="5" type="1">
+    <li><p><img src="/static/img/ccg/5.png" /></p></li>
+    <li><p><img src="/static/img/ccg/6.png" /></p></li>
+    </ol>
+    <p>Here’s how <em>lenā</em> and <em>cuknā</em> are handled as serial
+    verbs; the former takes the ergative and the latter does not. The
+    backward composition operation overrides the unspecified subject type of
+    the bare verb <em>kar</em>.</p>
+    <ol start="7" type="1">
+    <li><p><img src="/static/img/ccg/7.png" /></p></li>
+    <li><p><img src="/static/img/ccg/8.png" /></p></li>
+    </ol>
+    <p>Dative subjects:</p>
+    <ol start="9" type="1">
+    <li><img src="/static/img/ccg/9.png" /></li>
+    </ol>
+</body>
+
+</html>

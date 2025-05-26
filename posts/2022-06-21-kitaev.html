@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aryaman Arora</title>
+  <meta name="description" content="Aryaman Arora: NLP Researcher">
+  <meta property="og:title" content="Aryaman Arora">
+  <meta property="og:description" content="NLP Researcher">
+  <link rel="canonical" href="https://aryamanarora.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@aryaman2020">
+  <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+  <p style="font-size: 24px; font-weight: 600;"><a href="/index.html">Aryaman Arora</a> » <a href="/blog.html">Blog</a> » A machine-learned syntactic tagset?</p>
+
+  <p>I have been fascinated by the ACL 2022 Best Paper, <em><a
+    href="https://aclanthology.org/2022.acl-long.220.pdf">Learned
+    Incremental Representations for Parsing</a></em> by Nikita Kitaev,
+    Thomas Lu, and Dan Klein. I had the good fortune, wandering around in
+    Gather.town, to attend the poster session virtually before the award was
+    announced. The big thing that the paper showed is the tractibility of
+    human-like incremental parsing, which seems to have been pretty much a
+    dormant problem in the field ever since full-sentence language models
+    started dominating all the benchmarks. What’s especially crazy is the
+    numbers Kitaev et al. produce <em>with only left context</em> for their
+    parsing model beat state-of-the-art <em>whole-sentence</em> models from
+    just a couple years ago.</p>
+    <p>Kitaev and Klein have done a ton of great work on syntactic parsing
+    in the past, e.g. <a href="https://aclanthology.org/P18-1249/">this
+    paper</a> which introduced attention to constituency parsing in 2018, or
+    <a href="https://aclanthology.org/P17-1076.pdf">this one</a> which Klein
+    is an author on, achieving SOTA on constituency parsing with a neural
+    chart-parsing model for (I think) the first time. Thomas Lu seems to
+    have been a fourth-year undergrad at Berkeley at the time when the paper
+    was submitted—insanely cool.</p>
+    <p>What I found exciting about the paper was two things: (1)
+    <strong>vector quantisation</strong>, a technique to induce discrete
+    values in the model pipeline while still having the system be end-to-end
+    differentiable; and (2) the unsupervised learning of a pretty small
+    inventory of token labels, whose distribution is worth investigating.
+    I’ve thought about a couple of tasks that would need learned discrete
+    labels as an intermediate step, so learning about VQ was a huge deal for
+    me (and led me down the rabbithole of variational autoencoders
+    recently). But my main topic here today is the learned tagset
+    itself.</p>
+    <p>While checking out their code, I was excited to see that the model
+    can be run <a
+    href="https://colab.research.google.com/drive/1X99Vbz9pWv1-w-wZoCHzknYl_EU_GXZc">in
+    Colab</a> extremely easily, so naturally I decided to poke around at it.
+    The purpose of this post is to list some things I figured out about the
+    learned 32-token tagset—I was curious how it compared to the usual
+    part-of-speech tagsets that we use. Note that while they largely discuss
+    the 256-token tagset with an <em>F<sub>1</sub></em> score of 94.49, the
+    32-token one is still really good with a score of 93.50.</p>
+    <h2 id="prepositional-phrases">Prepositional phrases</h2>
+    <p>One of the first things I thought to poke at were prepositional
+    phrase attachment, since it was mentioned in the paper. One thing became
+    pretty clear: the thing this tagset is trying to do is very different
+    from what conventional POS tagsets are. Part-of-speech tags intends to
+    group lemmata with similar distributions together; e.g., the
+    <em>Cambridge Grammar of the English Language</em> designs its POS
+    tagset by making arguments about distribution, coordination scoping, and
+    similar linguistic considerations—this is how it ends up grouping some
+    conventional subordinators with prepositions, due to shared acceptance
+    of some clausal dependents.</p>
+    <p>This tagset, on the other hand, is learned as the sole input in order
+    to parse syntax, and that too with only the benefit of left-side
+    context. A normal POS tagset, I wager, is not informative enough to
+    generate accurate syntax trees by itself.</p>
+    <p>A common feature is a distinction between <strong>leading</strong>
+    (initial) and <strong>non-leading</strong> tags, sort of like the B and
+    I tags of BIO. This makes sense; a leading tag signals the start of a
+    new constituent, say an NP, and a non-leading tag signals its
+    continuation. But things were not so simple as to let there be only two
+    tags for indicating an NP. Below are some minimal pairs I found for
+    PP-attachment tags.</p>
+    <table>
+    <colgroup>
+    <col style="width: 42%" />
+    <col style="width: 14%" />
+    <col style="width: 43%" />
+    </colgroup>
+    <thead>
+    <tr>
+    <th>1</th>
+    <th>2</th>
+    <th>Ex.</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>PP attachment (NP vs. VP)</td>
+    <td></td>
+    <td></td>
+    </tr>
+    <tr>
+    <td>[24, 11, 0]</td>
+    <td>[4, 16, 25]</td>
+    <td><em>There is some cheese <strong>{from, in} the
+    farm</strong></em></td>
+    </tr>
+    <tr>
+    <td>[24, 11, 0]</td>
+    <td>[4, 11, 7]</td>
+    <td><em>I saw the {man, plant} <strong>with a
+    telescope</strong></em></td>
+    </tr>
+    <tr>
+    <td>[24, 11, 21]</td>
+    <td>[4, 28, 21]</td>
+    <td><em>I drew pictures <strong>{of, with} my kids</strong></em></td>
+    </tr>
+    <tr>
+    <td>Presence of preceding VP-internal constituent</td>
+    <td></td>
+    <td></td>
+    </tr>
+    <tr>
+    <td>[17, 11, 7]</td>
+    <td>[4, 28, 21]</td>
+    <td><em>I drew {∅, pictures} <strong>with my kids</strong></em></td>
+    </tr>
+    <tr>
+    <td>[17, 28]</td>
+    <td>[4, 28]</td>
+    <td><em>He is {∅, truly} <strong>in fear</strong></em></td>
+    </tr>
+    <tr>
+    <td>[17, 28, 21]</td>
+    <td>[4, 11, 21]</td>
+    <td><em>He is {∅, truly} <strong>in the farm</strong></em></td>
+    </tr>
+    <tr>
+    <td>?</td>
+    <td></td>
+    <td></td>
+    </tr>
+    <tr>
+    <td>[17, 11]</td>
+    <td>[17, 28]</td>
+    <td><em>He is <strong>in {France, fear}</strong></em></td>
+    </tr>
+    <tr>
+    <td>[17, 11, 7]</td>
+    <td>[17, 11, 21]</td>
+    <td><em>I am <strong>on the {internet, edge}</strong></em></td>
+    </tr>
+    </tbody>
+    </table>
+    <p><strong>Table 1</strong>: Tags outputted for some PP attachment
+    minimal pairs.</p>
+    <p>So we see that the tag on the preposition really does signal where
+    it’s attaching: to the preceding NP (4), or to the VP (24). Also, there
+    is another tag for attaching to the VP when there is no preceding NP in
+    the way (17).</p>
+    <p>The nouns are sort of screwed up though. There is a clear distinction
+    between leading and non-leading tokens, but it’s not just two tags
+    involved. We see all of the following: [11, {0, 7, 21}], [28, 21], [16,
+    25]. I think this is signalling some kind of syntactic tendency embodied
+    by these determiners/nouns, to use for potential dismabiguation as more
+    tokens to the right are consumed by the encoder. I’m not sure what that
+    tendency is though. Really interesting to find nevertheless!</p>
+    <h2 id="attempts-to-describe-each-tag">Attempts to describe each
+    tag</h2>
+    <p>Because I am excellent at making use of my time, I tried to figure
+    out what each tag was conveying syntactically. Some of these
+    descriptions are very rough and were before I systematically tried out
+    some of the PP-attachment stuff, so do not take them as authoritative. I
+    also could not get it to produce all of the tags since I was only using
+    it manually (it seemed like a fun challenge). An actual analysis should
+    probably run the tagger on the original paper’s test set.</p>
+    <ol type="1">
+    <li><p>Non-leading NP elements but nested in something. This contrasts
+    with 7; if 0 is used, the PP attaches to the NP preceding, but with 7 it
+    attaches to the VP as an adjunct.</p>
+    <ul>
+    <li>I saw a man with a <strong>book</strong></li>
+    </ul></li>
+    <li><p>Commas.</p>
+    <ul>
+    <li>When I was young <strong>,</strong> I had no brains</li>
+    </ul></li>
+    <li><p>Fronted verb or auxiliary verb in WH-questions.</p>
+    <ul>
+    <li>What <strong>have</strong> you been doing</li>
+    <li>How <strong>dare</strong> you !</li>
+    </ul></li>
+    <li><p>Final punctuation.</p>
+    <ul>
+    <li>I hate commas <strong>.</strong></li>
+    </ul></li>
+    <li><p>Prepositions, complement to VPs. Interestingly, <em>to</em> (in
+    the infinitive) falls under this category as well!</p>
+    <ul>
+    <li>There is some cheese [<strong>in</strong> the
+    fridge]<sub>PP</sub></li>
+    <li>I did this [<strong>with</strong> the goal of saving
+    you]<sub>PP</sub></li>
+    <li>I came here [<strong>with</strong> him]<sub>PP</sub>
+    [<strong>on</strong> the run]<sub>PP</sub></li>
+    <li>I did this [<strong>to</strong> save you]<sub>S</sub></li>
+    </ul></li>
+    <li><p>Non-leading elements of QPs.</p>
+    <ul>
+    <li>It happened [almost <strong>20</strong>]<sub>QP</sub> years ago</li>
+    </ul></li>
+    <li><p>Verbs in main clauses. Your least fancy verb in the sentence goes
+    under this category. Interestingly, this includes auxiliary verbs in the
+    clause too. This leads to chains of 6s.</p>
+    <ul>
+    <li>Luna <strong>smashed</strong> the pumpkin</li>
+    <li>You <strong>run</strong></li>
+    <li>I <strong>will be drawing</strong> a picture of him</li>
+    <li>He said that you <strong>are</strong> mean</li>
+    </ul></li>
+    <li><p>NP complements of PPs.</p>
+    <ul>
+    <li>The power of the <strong>people</strong> is magnificent</li>
+    <li>Inside a <strong>potato</strong> is a man</li>
+    <li>I am a man of the <strong>city</strong></li>
+    <li>I saw the planet with a <strong>telescope</strong></li>
+    </ul>
+    <p>Some kind of non-leading NP element (compounds?)</p>
+    <ul>
+    <li>What are the consequences of artificial
+    <strong>intelligence</strong> ?</li>
+    </ul></li>
+    <li><p>Conjunctions.</p>
+    <ul>
+    <li>[You <strong>or</strong> me]<sub>NP</sub> will go</li>
+    </ul></li>
+    <li><p>Verbs in nominalised clauses.</p>
+    <ul>
+    <li><strong>Eating</strong> food {is, seems} epic</li>
+    <li><strong>Yelling</strong> at people is mean</li>
+    </ul>
+    <p>Kind of cursed, but also <em>to</em> when indicating a complement
+    clause.</p>
+    <ul>
+    <li>I want <strong>to</strong> be the best</li>
+    </ul></li>
+    <li><p>Adjectives in predicate position.</p>
+    <ul>
+    <li>I am <strong>hungry</strong></li>
+    </ul></li>
+    <li><p>Leading elements of non-subject NPs. This one is super
+    interesting. So, if the object NP has a determiner, then that determiner
+    is labelled 11. But, if there is no determiner in that NP then it’s just
+    the nominal labelled that! This makes sense given only left context is
+    available to the model; this signals the left-most boundary of an object
+    NP.</p>
+    <ul>
+    <li>The man eats <strong>the</strong> food</li>
+    <li>The man eats <strong>food</strong></li>
+    </ul>
+    <p>Also seems to include PP objects.</p>
+    <ul>
+    <li>A hungry man is in <strong>my</strong> kitchen</li>
+    </ul></li>
+    <li><p>Verbs in SINV (inverted clauses), as well as where the subject is
+    a VP or NP with relative clause. Seems to be an indicator to head back
+    up to the S constituent after a pretty complex subject.</p>
+    <ul>
+    <li>Behind every door <strong>is</strong> a fridge</li>
+    <li>Eating food <strong>is</strong> epic</li>
+    <li>The man who I saw <strong>smells</strong> funny</li>
+    </ul></li>
+    <li><p>Verbs in adjunct clauses.</p>
+    <ul>
+    <li>[When Luna <strong>smashed</strong> the pumpkin]<sub>SBAR</sub> ,
+    she hurt her foot</li>
+    </ul>
+    <p>Verbs in WH-subject clauses which cause movement.</p>
+    <ul>
+    <li>Who <strong>are</strong> you</li>
+    <li>What [have you <strong>done</strong>]<sub>SQ</sub></li>
+    <li>What have you <strong>been doing</strong></li>
+    </ul></li>
+    <li><p>?</p></li>
+    <li><p>Leading NP elements of subjects of adjunct and complement
+    clauses.</p>
+    <ul>
+    <li>When <strong>the</strong> man was young he lived here</li>
+    <li>He said that <strong>you</strong> are mean</li>
+    </ul></li>
+    <li><p>Leading elements of main-clause subject NPs. Interestingly, this
+    behaves the exact same way as 11, indicating the leftmost token of a
+    subject NP.</p>
+    <ul>
+    <li><strong>The</strong> man eats the food</li>
+    <li><strong>He</strong> eats the food</li>
+    </ul>
+    <p>Also includes subjects of SQ which end up post-verbal.</p>
+    <ul>
+    <li>How dare <strong>you</strong> !</li>
+    </ul></li>
+    <li><p>Preposition that heads a PP adjunct to the verb.</p>
+    <ul>
+    <li>I am [<strong>inside</strong> a potato]<sub>PP</sub></li>
+    <li>We live [<strong>for</strong> the delicious things in
+    life]<sub>PP</sub></li>
+    <li>Yelling [<strong>at</strong> people]<sub>PP</sub> is mean</li>
+    </ul></li>
+    <li><p>Adverbs (spatial adjuncts, adjective modifiers).</p>
+    <ul>
+    <li>He lives <strong>here</strong></li>
+    <li>Life is <strong>really</strong> weird</li>
+    </ul></li>
+    <li><p>Adverbs (verbal adjuncts in general).</p>
+    <ul>
+    <li>He <strong>quickly</strong> handed me the potato</li>
+    </ul></li>
+    <li><p>Leading subjects of WH-questions and main clauses with preceding
+    WH-adjunct.</p>
+    <ul>
+    <li>What have <strong>you</strong> been doing</li>
+    <li>When the man was young <strong>he</strong> lived here</li>
+    </ul>
+    <p>Adverbial modifiers to S. These nest directly under S, no
+    intermediate projections.</p>
+    <ul>
+    <li>He threw up <strong>today</strong></li>
+    </ul>
+    <p>Leading direct objects in those constructions where the indirect
+    object isn’t in a PP.</p>
+    <ul>
+    <li>He quickly handed me <strong>the</strong> potato</li>
+    </ul></li>
+    <li><p>Non-leading NP elements. These seem to all be non-leftmost
+    elements of the (flat) NP that are nested under a VP or S directly. This
+    contrasts with 25.</p>
+    <ul>
+    <li>The <strong>man</strong> [eats [the
+    <strong>food</strong>]<sub>NP</sub> ]<sub>VP</sub></li>
+    <li>[[A <strong>hungry man</strong>]<sub>NP</sub> has
+    arrived]<sub>VP</sub></li>
+    </ul>
+    <p>In copular clauses, inside the predicate NP following the determiner
+    (labelled 28), the nominal is labelled 21 or 25. It seems to be 21 if
+    inanimate (or tending towards inanimate?) but 25 if animate. Honestly, I
+    have no clue what’s going on here. Maybe the sentence I am testing are
+    two short relative to the training data so they confuse the parser, but
+    this animacy thing seems to have a point to it!</p>
+    <ul>
+    <li>I am a {<strong>pumpkin</strong>, <strong>cheeseburger</strong>,
+    <strong>telescope</strong>}</li>
+    </ul></li>
+    <li><p>Complementiser.</p>
+    <ul>
+    <li>He said <strong>that</strong> you are mean</li>
+    </ul></li>
+    <li><p>WH-words. This is used regardless of where they are
+    syntactically, in a question, in a relative clause, or as an adjunct
+    clause (with <em>when</em>) etc.</p>
+    <ul>
+    <li><strong>What</strong> have you done</li>
+    <li><strong>Who</strong> are you</li>
+    <li><strong>Why</strong> are you hitting yourself</li>
+    <li>The man <strong>who</strong> I saw smells funny</li>
+    </ul></li>
+    <li><p>Prepositions.</p>
+    <ul>
+    <li>The cat in [<strong>in</strong> the hat]<sub>PP</sub> strikes
+    back</li>
+    </ul></li>
+    <li><p>25 is used for a variety of non-leading NP elements inside the
+    VP. One is the first NP with a PP complement. Another is the NP inside a
+    PP following the object of the verb, which seems entirely
+    counterintuitive.</p>
+    <ul>
+    <li>There is [[a <strong>man</strong>]<sub>NP</sub> [in the
+    fridge]<sub>PP</sub> ]<sub>NP</sub></li>
+    <li>We live for [[the <strong>delicious</strong> things]<sub>NP</sub> in
+    life]<sub>NP</sub></li>
+    <li>There [is some cheese [in [the <strong>fridge</strong>]<sub>NP</sub>
+    ]<sub>PP</sub> ]<sub>VP</sub></li>
+    </ul>
+    <p>I have found yet another cursed contrast here though, see 21.</p>
+    <ul>
+    <li>I am a {<strong>man</strong>, <strong>woman</strong>,
+    <strong>lady</strong>, <strong>baby</strong>, <strong>machine</strong>,
+    <strong>device</strong>}</li>
+    </ul></li>
+    <li><p>Verbs in relative clauses.</p>
+    <ul>
+    <li>She ate the pumpkin [that Luna
+    <strong>smashed</strong>]<sub>SBAR</sub></li>
+    <li>[What you <strong>said</strong>]<sub>SBAR</sub> was wrong</li>
+    </ul></li>
+    <li><p>?</p></li>
+    <li><p>NP-leading predicate of a copular clause. Also in some PPs?</p>
+    <ul>
+    <li>We are <strong>men</strong> (of the city)</li>
+    <li>I am <strong>a</strong> man (of the city)</li>
+    <li>I did this [with <strong>the</strong> goal of saving
+    you]<sub>PP</sub></li>
+    </ul>
+    <p>Honestly just a grab bag of weird NPs.</p>
+    <ul>
+    <li>I am [[<strong>four</strong> feet]<sub>NP</sub>
+    tall]<sub>ADJP</sub></li>
+    </ul></li>
+    <li><p>Non-leading NP element that is a modifier to an ADJP.</p>
+    <ul>
+    <li>I am [[four <strong>feet</strong>]<sub>NP</sub>
+    tall]<sub>ADJP</sub></li>
+    </ul></li>
+    <li><p>?</p></li>
+    <li><p>Particles.</p>
+    <ul>
+    <li>He threw <strong>up</strong> everywhere</li>
+    </ul>
+    <p>The adverb <em>ago</em>.</p>
+    <ul>
+    <li>[6 years <strong>ago</strong>]<sub>ADVP</sub> he got here</li>
+    </ul></li>
+    </ol>
+    <h2 id="references">References</h2>
+    <ol type="1">
+    <li>Nikita Kitaev and Dan Klein. 2018. <a
+    href="https://aclanthology.org/P18-1249/">Constituency Parsing with a
+    Self-Attentive Encoder</a>. In <em>Proceedings of the 56th Annual
+    Meeting of the Association for Computational Linguistics (Volume 1: Long
+    Papers)</em>, pages 2676–2686, Melbourne, Australia. Association for
+    Computational Linguistics.</li>
+    <li>Nikita Kitaev, Thomas Lu, and Dan Klein. 2022. <a
+    href="https://aclanthology.org/2022.acl-long.220/">Learned Incremental
+    Representations for Parsing</a>. In <em>Proceedings of the 60th Annual
+    Meeting of the Association for Computational Linguistics (Volume 1: Long
+    Papers)</em>, pages 3086–3095, Dublin, Ireland. Association for
+    Computational Linguistics.</li>
+    <li>Mitchell Stern, Jacob Andreas, and Dan Klein. 2017. <a
+    href="https://aclanthology.org/P17-1076/">A Minimal Span-Based Neural
+    Constituency Parser</a>. In <em>Proceedings of the 55th Annual Meeting
+    of the Association for Computational Linguistics (Volume 1: Long
+    Papers)</em>, pages 818–827, Vancouver, Canada. Association for
+    Computational Linguistics.</li>
+    </ol>
+</body>
+
+</html>
