@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aryaman Arora</title>
+  <meta name="description" content="Aryaman Arora: NLP Researcher">
+  <meta property="og:title" content="Aryaman Arora">
+  <meta property="og:description" content="NLP Researcher">
+  <link rel="canonical" href="https://aryamanarora.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@aryaman2020">
+  <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+  <p style="font-size: 24px; font-weight: 600;"><a href="/index.html">Aryaman Arora</a> » <a href="/blog.html">Blog</a> » The Hittite problem</p>
+
+<p><strong>You are a <a
+    href="https://en.wikipedia.org/wiki/Hittites">Hittite</a> spy.</strong>
+    You report directly to the great king <a
+    href="https://en.wikipedia.org/wiki/%C5%A0uppiluliuma_I">Šuppiluliuma
+    I</a>, who rules from his magnificent capital at Ḫattuša. Recently, the
+    Hittites have been on good terms with their neighbours <a
+    href="https://en.wikipedia.org/wiki/Hurrians">the Hurrians</a>. Still,
+    you can never be too sure about even the best of allies, and therefore
+    the king has sent you to infilitrate the Hurrian bureauracy so that you
+    can pre-empt any conspiracies brewing within.<span class="sidenote-number">
+      <small class="sidenote">I think NLP should employ more whacky analogies (see
+        e.g. <a href="https://en.wikipedia.org/wiki/Leslie_Lamport">Leslie
+        Lamport</a>’s work on distributed systems). I am sorry in advance if
+        this makes no sense!</small>
+    </span></p>
+    <p>You are so good at your job that you have totally compromised all
+    incoming information channels into the Hurrian government apparatus—you
+    can mess with their weather reports, their intelligence dossiers, their
+    tax records, etc. However, there is one big problem preventing you from
+    completely compromising this adversary: all of their internal
+    communication is encrypted and your cryptographers have made no progress
+    at cracking the code. Furthermore, no one inside the government can be
+    bribed to reveal how the encryption works, since the encryption method
+    is so complex that no single person (let alone a random civil servant)
+    can understand how it works.<span class="sidenote-number">
+      <small class="sidenote">I know it’s not a perfect analogy so you can poke holes
+        in it if you like. Or just assume every government worker is completely
+        loyal so you can’t just manipulate people to get what you want.</small>
+    </span> Basically, you can only
+    mess with what’s <strong>coming in</strong> (all information channels,
+    including internal ones) and observe what <strong>goes out</strong>
+    (governmental decisions decided by the top brass).</p>
+    <p>Knowing who is in charge of what will be useful for identifying
+    high-value targets or figuring out what minimal set of information
+    channels to manipulate to steer the government into doing what you want.
+    So how can you figure out how the government is structured?</p>
+    <p>This is the interpretability problem.</p>
+    <p>Here are some of the approaches the surprisingly sophisticated
+    Hittite geopolitics experts have suggested over the years for cracking
+    this problem:</p>
+    <ol type="1">
+    <li><strong>Probing</strong>: Access past internal encrypted
+    communications and resulting government decisions and train machine
+    learning models to try and guess what the government will do based on
+    just the communications. You’re just a spy though—you don’t understand
+    machine learning and you don’t see how this tells you anything useful
+    about who’s in charge of what. <em>(Breaking out of character: this
+    doesn’t establish causality between decisions and communications—you
+    only know X information <strong>could</strong> be used based on this
+    activation, not whether the model actually does so. And interpreting a
+    model with another model is… an interesting choice. I feel like we can
+    do better.)</em><span class="sidenote-number">
+      <small class="sidenote">I am a real scholar so I will try to cite some papers.
+        But there’s way too much probing literature to sift through. Start with
+        ctrl-F “probing” on <a
+        href="https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00349/96482/A-Primer-in-BERTology-What-We-Know-About-How-BERT">Rogers
+        et al. (2021)</a>.</small>
+    </span><a href="#fn3" class="footnote-ref" id="fnref3"
+    role="doc-noteref"><sup>3</sup></a></li>
+    <li><strong>Interpret attention patterns</strong>: While you can’t tell
+    what the content of each encrypted message is, you do know who is
+    sending it to who and what information channels are being accessed. So
+    you can establish who is whose superior, and what input information some
+    decisions <em>may</em> be based on. But you are missing the actual
+    meaningful part of the messages: their content! <em>(Attention patterns
+    are seductively easy to visualise, but again they don’t establish
+    causality between parts of a model. The attention pattern doesn’t tell
+    us <strong>how</strong> information is used or manipulated, only where
+    it goes.)</em><span class="sidenote-number">
+      <small class="sidenote"><a href="https://arxiv.org/pdf/1906.04341.pdf">Clark et
+        al. (2019)</a></small>
+    </span>
+</li>
+    <li><strong>Zero ablation</strong>: Erase some set of internal messages
+    and see what happens. This might not tell you much though since it may
+    just cause confusion in the governmental ranks, probably making some
+    superiors angry at their subordinates for not transmitting important
+    information rather than meaningfully affecting governmental decisions.
+    <em>(Zero ablation may throw the model off-distribution in an important
+    way, since you have no idea what a zero vector as an internal activation
+    actually means—e.g. maybe “no information” is encoded as a non-zero
+    vector.)</em><span class="sidenote-number">
+      <small class="sidenote">From here on out, we are in the Wild West of mechanistic
+        interpretability, where much interesting work is very recent and
+        confined to blogposts that can be kind of hard to understand, rather
+        than arXiv papers (which tbh are often still hard to understand). The
+        earliest use of zero ablation is probably <a
+        href="https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens">nostalgebraist
+        (2020)</a>, who zero-ablated internal model layers to get a sort of
+        early peak into what activations may mean in terms of the vocabulary.
+        You see the method often used by LessWrong-ers. Also, note that zero
+        ablation should be pretty useless on models trained with dropout (since
+        that applies zero ablation to increase model robustness), as pointed out
+        by <a
+        href="https://www.neelnanda.io/mechanistic-interpretability/glossary">Neel
+        Nanda</a>.</small>
+    </span></li>
+    <li><strong>Mean ablation</strong>: Take all encrypted communications
+    recorded over a particular channel in the past. In this analogy we can’t
+    really take the mean over activations, but let’s say we produce a really
+    boring and average communication (e.g. the mode). This means no
+    important (i.e. anomalous, low-surprisal) information gets transferred
+    over this channel. So e.g. you may be able to figure out who in the
+    government handles disaster response if you replace their “oh no!”
+    message into an everyday “all clear” message. <em>(This might again be
+    weirdly off distribution. In a real model, you might then be taking the
+    mean of a non-normally distributed activation and producing some weird
+    new stuff the model has never seen before.)</em></li>
+    <li><strong>Path patching</strong> or <strong>interchange
+    intervention</strong>: Feed wrong information to only some people in the
+    government or only along some chains of command. See how the response
+    changes—you can causally establish what people are responsible for
+    delivering certain kinds of information up the chain of command.<span class="sidenote-number">
+      <small class="sidenote"><strong>Path patching</strong> comes from <a
+        href="https://arxiv.org/pdf/2211.00593.pdf">Wang et al. (2022)</a> which
+        was the first work to find a circuit accomplishing a specific task in
+        GPT-2 Small. The method is expounded upon in <a
+        href="https://arxiv.org/pdf/2304.05969.pdf">Goldkowsky-Dill et
+        al. (2023)</a> [which I am an author on]. <strong>Interchange
+        interventions</strong> come from this line of work: <a
+        href="https://arxiv.org/pdf/2301.04709.pdf">Geiger et al. (2023)</a>, <a
+        href="https://proceedings.neurips.cc/paper/2021/file/4f5c422f4d49a5a807eda27434231040-Paper.pdf">Geiger
+        et al. (2021)</a>. The basic idea between the two lines of work is the
+        same, but I have yet to fully understand the latter series to be
+        confident that the implementation is the same too.</small>
+    </span></li>
+    <li><strong>Resampling ablation</strong>: Pick a random encrypted
+    message from the past. Substitute it in place of the one being
+    transmitted today. Do this a bunch of times with different random
+    messages and see what happens—e.g. maybe suddenly the government is
+    unable to feed its population, in which case you know you messed with
+    someone responsible for agriculture. <em>(Easier to automate than the
+    above but hard to figure out how to set up your experiments.)</em><span class="sidenote-number">
+      <small class="sidenote">Resampling ablations are used in <a
+        href="https://arxiv.org/pdf/2304.05969.pdf">Goldkowsky-Dill et
+        al. (2023)</a>. A promising kind of work is automated circuit
+        interpretability as implemented by <a
+        href="https://arxiv.org/pdf/2304.14997.pdf">Conmy et al. (2023)</a>.</small>
+    </span></li>
+    </ol>
+    <p><em>Okay now I’ll break out of character.</em></p>
+    <p>What is the best method for figuring out how a neural network
+    computes something? It’s barely been a couple years and so many
+    different approaches have proliferated. I haven’t even listed all the
+    possible approaches because some of them are pretty hard to
+    analogise—e.g., <strong>iterative nullspace projections</strong> attempt
+    to remove concepts in the activation space by (iteratively) projecting
+    activations onto the nullspace of linear probes trained to predict that
+    concept (see <a href="https://arxiv.org/pdf/2004.07667.pdf">Ravfogel et
+    al., 2020</a>). There’s a bunch of work on fact-editing in transformers
+    too that is relevant to interpretability as well. I also don’t even
+    mention explainability methods (which sometimes aren’t conceptually
+    different from probing).</p>
+    <p>Broadly, I think methods that <strong>establish causality</strong>
+    are the most promising and well-founded. The argument for causality
+    stems from the deficiency in probing that I think is best articulated in
+    <a href="https://arxiv.org/pdf/2301.04709.pdf">Geiger et al. (2023)</a></p>
+    <blockquote>From an information-theoretic point of view, we can observe that
+    using arbitrarily powerful probes is equivalent to measuring the mutual
+    information between the concept and the neural representation (Hewitt
+    and Liang, 2019; Pimentel et al., 2020). If we restrict the class of
+    probing models based on their complexity, we can measure how usable the
+    information is (Xu et al., 2020; Hewitt et al., 2021). Regardless of
+    what probe models are used, successfully probing a neural representation
+    does not guarantee that the representation plays a causal role in model
+    behavior (Ravichander et al., 2020; Elazar et al., 2020; Geiger et al.,
+    2020, 2021).</blockquote>
+    <p>What we want to know, when interpreting how a model works, is how
+    information <em>is</em> used to produce the output. What probing tells
+    is whether that information <em>could</em> be used to produce a
+    <em>desired</em> output. To illustrate the point above about probes
+    measuring mutual information: imagine your transformer model internally
+    one-hot encodes your vocabulary. You want to probe whether the model
+    knows if a word is a noun or not. With an MLP probe on the embeddings
+    (with sufficient layers), you would think yes—because an NN with
+    nonlinearities can approximate any function, and any function on your
+    vocabulary can be encoded on one-hot vector inputs! Your probe would
+    basically just have to learn a lookup table, never mind whether or how
+    the model does. This is formalised in the <a
+    href="https://en.wikipedia.org/wiki/Data_processing_inequality">data
+    processing inequality</a> and first pointed out in NLP literature by <a
+    href="https://aclanthology.org/2020.acl-main.420.pdf">Pimentel et
+    al. (2020)</a>.</p>
+    <p>We don’t actually care about whether information <em>could</em> be
+    extracted from a representation. We care about whether it <em>is</em> by
+    the model we’re studying. Causal abstraction methods, which test
+    counterfactual inputs to parts of the model that let uss modify specific
+    information, can tell us this.</p>
+</body>
+
+</html>

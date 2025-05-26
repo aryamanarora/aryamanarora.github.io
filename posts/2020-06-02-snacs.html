@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aryaman Arora</title>
+  <meta name="description" content="Aryaman Arora: NLP Researcher">
+  <meta property="og:title" content="Aryaman Arora">
+  <meta property="og:description" content="NLP Researcher">
+  <link rel="canonical" href="https://aryamanarora.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@aryaman2020">
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leipzig@latest/dist/leipzig.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/leipzig@latest/dist/leipzig.min.js"></script>
+  <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          Leipzig().gloss()
+      }, false);
+  </script>
+
+  <!--CSS-->
+<!-- <link href="/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<!-- <link href="/dist/css/main.css" rel="stylesheet"> -->
+<!--JS-->
+<script
+src="https://code.jquery.com/jquery-3.5.1.min.js"
+integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+<script src="/dist/js/main.js"></script>
+<style>
+    .supersense {
+        color: #3c3;
+    }
+    .construal {
+        color: #a3f;
+    }
+
+    .gloss--glossed {
+            margin-left: 2rem;
+    }
+    .gloss__word {
+        margin-bottom: 0rem !important; 
+    }
+    .gloss__line--free {
+        margin-bottom: 0rem !important; 
+    }
+</style>
+<script>
+$(function() {
+    $('.construal').each(function() {
+        var ss = $(this).text().split('--')
+        ss.forEach((d, i) => {
+            var res = ''
+            res += `<span class="supersense">`
+            res += d
+            res += '</span>'
+            ss[i] = res
+        })
+        $(this).html(ss.join('↝'))
+    })
+})
+</script>
+</head>
+
+<body>
+    <p style="font-size: 24px; font-weight: 600;"><a href="/index.html">Aryaman Arora</a> » <a href="/blog.html">Blog</a> » Hindi adpositions</p>
+<p class="lead">These are just some notes about Hindi SNACS that I wanted to be publicly available. I would use Google Docs, but they don't have good support for interlinear glosses. I would use Xposition, but I'm not really sure what the best place for it is there.</p>
+<h2 class="construal">Theme</h2>
+<h3>Optional को-marking</h3>
+<p class="blockquote">
+Use <span class="construal">Theme</span> with appropriate construals as needed.
+</p>
+<p>
+The postposition को optionally marks a <span class="construal">Theme</span> only when there is some prototypical <span class="construal">Agent</span> involved in the action. That <span class="construal">Agent</span> isn't necessarily even named in the sentence. There is also evidence that the optional को marks more salient or definite objects (e.g. it is not optional on animate objects). <a href="#magier-1987">Magier (1987)</a> has a great analysis of what this kind of को means so I will not repeat it.
+<div data-gloss>
+<p>मैंने {उसको<sub class="construal">Theme</sub>} मारा।</p>
+<p>1SG-ERG 3SG-DAT hit-PRF</p>
+<p>I hit him.</p>
+</div>
+<div data-gloss>
+<p>मैंने {उसको<sub class="construal">Stimulus--Theme</sub>} देखा।</p>
+<p>1SG-ERG 3SG-DAT see-PRF</p>
+<p>I saw her.</p>
+</div>
+</p>
+<h2 class="construal">Agent</h2>
+<p class="blockquote">
+I have decided to apply <span class="construal">Agent</span> as the function (or <span class="construal">Causer</span> for inanimate agents) to all uses of ने, को, and से to mark an agentive subject <em>regardless of volition</em>.
+</p>
+<p>
+The issues in this are that (1) all three denote different levels of volition, and (2) they are used in very different constructions. ने is almost always the ergative subject, को used for the subject in modal sentences indicating necessity or obligation, and से used for subjects in passive constructions. The last two are a little tough to decide on, but I've done my best in detailing my decisions below.
+</p>
+<h3>Impelled agents marked by से <em>se</em></h3>
+<p class="blockquote">
+Use <span class="construal">Agent--Instrument</span> (or any of the other relevant ने scene roles).
+</p>
+<p>
+The <strong>impelled agent</strong> (मध्यस्थ कर्ता) is a mediator forced to do some action by a full <span class="construal">Agent</span> (marked with ने). They lack the volition of the full agent. This construction involves a second causative verb.
+<div data-gloss>
+<p>मैंने बाई से बच्चे को सुलवाया।</p>
+<p>I-ERG maid INS child DAT make-sleep-PRF</p>
+<p>I made the maid put the child to sleep.</p>
+</div>
+</p>
+<p>
+First of all, the function is undoubtedly <span class="construal">Instrument</span> since it is an entity applying causal force. Now what reasoning is there for the scene role not being the same? Well, if an actual <span class="construal">Instrument</span> is used to perform some action, the second causative verb is ungrammatical. A first causative verb is used when the intermediary has no agency at all. (Example adapted from <a href="#begum-2010">Begum and Sharma, 2010</a>).
+<div data-gloss>
+<p>मैंने चाबी से ताला खोला।</p>
+<p>I-ERG key INS lock open-PRF</p>
+<p>I opened the lock with the key.</p>
+</div>
+<div data-gloss>
+<p>मैंने मालिक से ताला खुलवाया।</p>
+<p>I-ERG owner INS lock make-open-PRF</p>
+<p>I made the owner open the lock.</p>
+</div>
+</p>
+<p>
+So it's not <span class="construal">Instrument--Instrument</span>. That is why I have settled on using <span class="construal">Agent--Instrument</span> as the construal, since it captures both the impelling and the agency encoded in the construction.
+</p>
+<p>
+The problem is that instrumental agent does not perform the action with volition. However, I don't think volition should be considered in the formulation of SNACS as it stands. My thoughts below on modal and passive constructions will support that opinion.
+</p>
+<h3>Modal constructions with को <em>ko</em></h3>
+<p class="blockquote">
+Treat the same as ने.
+</p>
+<p>
+को is an exact parallel to ने in non-modal constructions. Also, this parallelism is easily maintained without considering volition in other scene roles like <span class="construal">Theme</span>. Consider:
+<div data-gloss>
+<p>मुझे रोना पड़ा।</p>
+<p>1SG-ERG cry-INF obligated-PRF</p>
+<p>I had to cry.</p>
+</div>
+<div data-gloss>
+<p>मैं रोया।</p>
+<p>1SG cry-PRF</p>
+<p>I cried.</p>
+</div>
+</p>
+<p>
+Both subjects get <span class="construal">Theme</span>. Ultimately, modality shouldn't matter in <span class="construal">Agent</span>s; it should be, if encoded at all, should be separate of the scene role.
+</p>
+<h3>Passive constructions with से <em>se</em></h3>
+<p class="blockquote">
+Treat the same as ने.
+</p>
+<p>
+से is used to mark the agent in passive constructions formed with the light verb जाना "to go". Building on the same logic used to construe को as <span class="construal">Agent</span> in modal constructions, we should stay parallel to the active construction, even though in passive constructions agentive force is dampened.
+<div data-gloss>
+<p>मुझसे काम नहीं किया गया।</p>
+<p>I-INS work not do-PRF go-PRF</p>
+<p>The work was not able to be done by me.</p>
+</div>
+</p>
+<h3>Non-agentive uses of ने <em>ne</em></h3>
+<p class="blockquote">
+Use <span class="construal">Theme--Theme</span>.
+</p>
+<p>
+<a href="#de-hoop-2005">De Hoop and Narasimhan (2005)</a> do an excellent job of analyzing the case markings of Hindi subjects. A good example for ने marking increased volition in bodily-emission verbs ("to cry", "to urinate", etc.) is given by them:
+<div data-gloss>
+<p>राम {ने<sub class="construal">Agent</sub>} चीख़ा।</p>
+<p>Ram ERG scream-PRF</p>
+<p>Ram screamed (purposefully).</p>
+</div>
+<div data-gloss>
+<p>{राम <sub class="construal">Theme</sub>} चीख़ा।</p>
+<p>Ram-NOM scream-PRF</p>
+<p>Ram screamed.</p>
+</div>
+</p>
+<p>
+However, they go on to conclude "Ergative case thus expresses the volitionality of the
+agent argument in the intransitive examples above, <strong>but volitionality is not necessarily realized as ergative case</strong>." This solidifies my decision to include the less volitional uses of को and से as <span class="construal">Agent</span>s.
+</p>
+<p>
+They go on to talk about how case markers on the subject actually have very little to do with agentivity and more to do with the semantics of the verb. One problem regarding the agentivity of ने arises in certain light verb constructions, e.g.:
+<div data-gloss>
+<p>राम ने बहुत मार खायी।</p>
+<p>Ram ERG much beating eat-PRF</p>
+<p>Ram got severely beaten up. [lit. Ram ate a lot of beating.]</p>
+</div>
+<div data-gloss>
+<p>राम ने उससे मार खायी।</p>
+<p>Ram ERG he-INS beating eat-PRF</p>
+<p>Ram got severely beaten up by him. [lit. Ram ate a lot of beating from him.]</p>
+</div>
+<div data-gloss>
+<p>उसने राम को मारा।</p>
+<p>he-ERG Ram DAT hit-PRF</p>
+<p>He beat up Ram.</p>
+</div>
+</p>
+<p>
+There is absolutely nothing agentive about Ram being beaten up, but the semantics of खाना force him to take an ergative marking anyways. Ram is unambiguously <span class="construal">Theme</span>. This affirms the utility of SNACS to Hindi, since case markers in isolation don't actually help in figuring out what role the marked object takes on so a computer won't be able to guess the semantic role off of it.
+</p>
+<h2 class="construal">Experiencer</h2>
+<h3>Dative subject</h3>
+<p class="blockquote">
+Use <span class="construal">Experiencer--Recipient</span>, or a construal <span class="construal">Theme--Recipient</span> if the verb deal with external body events.
+</p>
+<p>
+I have been labelling को in this sense as <span class="construal">Experiencer--Theme</span> for quite a while now but looking deeper into the semantic role of experiencers in South Asian languages as a whole compels me to reclassify its function. It doesn't easily fit into subject (<span class="construal">Agent</span>) or object (<span class="construal">Theme</span>), which are the first functions that would come to mind for it.
+<div data-gloss>
+<p>मुझको दुःख हुआ।</p>
+<p>I-DAT sadness be-PRF</p>
+<p>I felt sad.</p>
+</div>
+</p>
+<p>
+In this example, we see that "sadness" is in the unmarked nominative case, so we expect it to be the subject intuitively. However, crediting <a href="#kachru-1990">Kachru (1990)</a>, we can use the test of <strong>reflexifization</strong> to find out what the subject is. If the reflexive genetive <em>अपना</em> is inserted, it refers back to the dative-marked noun, so that is the subject for sure.
+</p>
+<p>
+Now this seems straightforward. Just mark it <span class="construal">Experiencer</span> right? Well what about dative subjects such as:
+<div data-gloss>
+<p>मुझको चोट लगी।</p>
+<p>I-DAT injury feel-PRF</p>
+<p>I got hurt.</p>
+</div>
+<div data-gloss>
+<p>मुझको पहुँचने में एक घंटा लगा।</p>
+<p>I-DAT reach-INF-OBL LOC one hour feel-PRF</p>
+<p>It took me an hour to arrive.</p>
+</div>
+</p>
+<p>
+These aren't really <span class="construal">Experiencer</span>. The first one seems to be more of a <span class="construal">Theme</span>, but in Hindi body events that are outside the recipient's volition are treated just like cognitive or emotional events.
+</p>
+<p>
+The second one really has nothing to do with what we think of as an <span class="construal">Experiencer</span> in SNACS. This is an obvious <span class="construal">Theme</span> right? It's harder to make the case for it to be treated the same as the emotion example above.
+</p>
+<p>
+This illustrates that <strong>it is difficult to draw the line between <span class="construal">Theme</span> and <span class="construal">Experiencer</span></strong> in Hindi (as well as, I suspect, other languages with such dative subjects).
+</p>
+<p>
+<a href="#kachru-1990">Kachru</a> does look at semantic roles and suggests for the dative subject a hyperrole "by combining Experiencer, Recipient, Goal, and Patient." The only commonality between these is that (1) something happens to them, and (2) they are not in control of what happens.
+</p>
+<p>
+But wait:
+<div data-gloss>
+<p>मुझको ख़ुशी मिली।</p>
+<p>1SG-DAT happiness receive-PRF</p>
+<p>I felt happy.</p>
+</div>
+<div data-gloss>
+<p>मुझको तोहफ़ा मिला।</p>
+<p>1SG-DAT gift receive-PRF</p>
+<p>I got a present.</p>
+</div>
+</p>
+<p>
+Indeed, मिलना's dative subject usage covers both <span class="construal">Recipient</span> and <span class="construal">Experiencer</span>, serving as the missing link to the indirect object functions of को discussed below. Another example:
+<div data-gloss>
+<p>मुझे दिखा।</p>
+<p>1SG-DAT be-seen-PRF</p>
+<p>I saw it.</p>
+</div>
+<div data-gloss>
+<p>मुझको दिखाई दिया।</p>
+<p>1SG-DAT sight give-PRF</p>
+<p>I saw it.</p>
+</div>
+</p>
+<p>
+In the second one को serves as <em>both</em> the indirect object of receiving (देना) and a dative subject, much like मिलना. Ultimately, this overlap leads me to join the two use cases.
+</p>
+<p>
+In the two ambiguous cases I gave much earlier, <span class="construal">Theme--Recipient</span> is what should be used.
+</p>
+<p>
+Reading through <a href="#butt-2006">Butt, Grimm, and Ahmed (2006)</a> as well as seeing the Hindi example (if only I had seen it earlier!) in <a href="#hwang-2018">Hwang, et al. (2018)</a> was immensely helpful.
+</p>
+<h2 class="construal">Recipient</h2>
+<h3>को-marked indirect objects of ditransitive verbs</h3>
+<p class="blockquote">
+Use a separate function <span class="construal">Recipient</span> with appropriate construals.
+</p>
+<p>
+<div data-gloss>
+<p>मैंने {उसको<sub class="construal">Recipient</sub>} तोहफ़ा दिया।</p>
+<p>1SG-ERG 3SG-DAT gift give-PRF</p>
+<p>I gave him the gift.</p>
+</div>
+<div data-gloss>
+<p>मैंने {उसको<sub class="construal">Experiencer--Recipient</sub>} तोहफ़ा दिखाया।</p>
+<p>1SG-ERG 3SG-DAT gift show-PRF</p>
+<p>I showed him the gift.</p>
+</div>
+</p>
+<p>
+I was originally treating this as <span class="construal">Goal</span> but it has dawned on me that in this usage, the indirect object is always animate. Semantically, it is not the endpoint of the action but rather the one receiving the outcome. The distinction is fine enough that it was not immediately obvious to me.
+</p>
+<p>
+Notably, this means Hindi has little in terms of a prototypical <span class="construal">Goal</span> marker; the <span class="construal">Locus</span> postpositions (में, पर, पे) fill this gap.
+</p>
+<h2>Conclusion</h2>
+<p>
+Ultimately, the case-marking postpositional system of Hindi really deals with the intentionality and volition of the action at hand rather than semantic roles. The agentivity and volition of a participant is some function of both the case marker and the semantics of the verb that modify it. (This accounts for high-agentivity ने combined with negative-agency खाना "to eat" giving a <span class="construal">Theme</span>.)</p>
+<p>
+The hierarchy I propose is:
+</p>
+<table class="table table-dark">
+<thead>
+<th>Postposition</th>
+<th>Case</th>
+<th>Meaning</th>
+</thead>
+<tr>
+<td>ने</td>
+<td>ergative</td>
+<td>High agency over the action. Generally volitional unless employed by a strongly unvolitional light verb construction (e.g. with खाना "to eat").</td>
+</tr>
+<tr>
+<td>का</td>
+<td>genitive</td>
+<td>Neutral in terms of agency and volition. Can be used to describe any of the possible participant roles: उसका मरना "his death", उसका दुःख "his sadness", उसका तोड़ना "his breaking (of x)"</td>
+</tr>
+<tr>
+<td>से</td>
+<td>instrumental</td>
+<td>Less volitional or intentional but still can be used by full agents. Evidenced by impelled agents in causative constructions as well as passive agents.</td>
+</tr>
+<tr>
+<td>को</td>
+<td>dative</td>
+<td>Least volitional. Besides marking a protypical <span class="construal">Theme</span>, in the subject it denotes obligation in modal constructions and other generally non-volitional participants.</td>
+</tr>
+</table>
+<h2>References</h2>
+<ol>
+<li id="begum-2010">Begum, Rafiya, and Dipti Misra Sharma. "<a href="https://www.aclweb.org/anthology/W10-32.pdf#page=129">A preliminary work on causative verbs in Hindi.</a>" <em>Proceedings of the 8th Workshop on Asian Language Resources</em>. 2010.</li>
+<li id="butt-2006">Butt, Miriam, Scott Grimm, and Tafseer Ahmed. "<a href="https://www.ling.uni-konstanz.de/typo3temp/secure_downloads/82196/0/6fdd288ee18f859e78c57e79e16fca8a2d788a60/nijmegen-hnd.pdf">Dative subjects.</a>" <em>NWO/DFG Workshop on Optimal Sentence Processing</em>. 2006.</li>
+<li id="de-hoop-2005">De Hoop, Helen, and Bhuvana Narasimhan. "<a href="https://pure.mpg.de/rest/items/item_57704/component/file_2629949/content">Differential case-marking in Hindi.</a>" <em>Competition and Variation in Natural Languages</em>. Elsevier, 2005. 321-345.</li>
+<li id="hwang-2018">Hwang, Jena D., et al. "<a href="https://www.aclweb.org/anthology/S17-1022.pdf">Double trouble: the problem of construal in semantic annotation of adpositions.</a>" <em>Proceedings of the 6th Joint Conference on Lexical and Computational Semantics (* SEM 2017)</em>. 2017.</li>
+<li id="kachru-1990">Kachru, Yamuna. "<a href="https://books.google.com/books?id=XCarNNGmOMYC&lpg=PA1&ots=bNfW0B_g7n&dq=hindi%20%22theme%22%20%22patient%22%20%22experiencer%22&lr&pg=PA59#v=onepage&q&f=false">Experiencer and other oblique subjects in Hindi.</a>" <em>Experiencer subjects in South Asian languages</em>. Stanford CA: CSLI Publications, 1990. 59-75.</li>
+<li id="magier-1987">Magier, David. "<a href="https://www.tandfonline.com/doi/pdf/10.1080/00437956.1987.11435888">The transitivity prototype: evidence from Hindi.</a>" <em>Word</em> 38.3, 1987. 187-199.</li>
+<li id="narasimhan-1998">Narasimhan, Bhuvana. "<a href="https://onlinelibrary.wiley.com/doi/pdf/10.1111/1467-9582.00029?casa_token=x36ntn1yiwcAAAAA:HIIRp_yFWA_CSNxLhxw2aj5Bjm2EoxbkRoFQZh5fCNIF8cKEQSSfr-Vn4IsBldMIF80ZR8D14YBqACE">A lexical semantic explanation for ‘quirky’ case marking in Hindi.</a>" <em>Studia Linguistica</em> 52.1, 1998. 48-76.</li>
+</ol>
+</body>
