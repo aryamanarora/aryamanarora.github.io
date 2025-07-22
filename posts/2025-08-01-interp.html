@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>On mechanistic interpretability - Aryaman Arora</title>
+  <meta name="description" content="Blog post by Aryaman Arora">
+  <meta property="og:title" content="On mechanistic interpretability">
+  <meta property="og:type" content="article">
+  <meta property="og:description" content="Blog post by Aryaman Arora">
+  <meta property="og:url" content="https://aryaman.io/posts/2025-08-01-interp.html">
+  <meta property="og:image" content="https://aryaman.io/favicon.ico">
+  <meta name="twitter:title" content="On mechanistic interpretability">
+  <meta name="twitter:description" content="Blog post by Aryaman Arora">
+  <meta name="twitter:image" content="https://aryaman.io/favicon.ico">
+  <link rel="canonical" href="https://aryaman.io/posts/2025-08-01-interp.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@aryaman2020">
+  <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+  <p style="font-size: 24px; font-weight: 600;"><a href="/index.html">Aryaman Arora</a> » <a href="/blog.html">Blog</a> » On mechanistic interpretability</p>
+
+<p>Suppose you are a model provider trying to understand how well your post-trained model does what you want it to do.</p>
+<p>In deployment, there are three actors at play: the <strong>model</strong>, the <strong>provider</strong>, and the <strong>user</strong>. Each has its own preferences over model behaviour; generally, the goal of post-training is to make the model’s preferences match the user’s, unless overridden by the provider’s.<span class="sidenote-number">
+      <small class="sidenote">At least, it seems that the goal of most labs (e.g. Anthropic’s <a
+href="https://docs.anthropic.com/en/docs/about-claude/glossary#hhh">HHH</a>)
+is that the model should politely and diligently act on the user’s
+requests just like they would expect a human assistant to, unless they
+violate the preferences of the provider or otherwise incur liability
+(e.g. by asking the model to do something illegal). But you can probably
+think of less hands-off cases where a model provider tried to explicitly
+make <em>their</em> preference’s override the user’s…</small>
+    </span></p>
+<p>Before pushing to prod, you are most interested in cases where the model’s behaviour doesn’t match the expected behaviour imposed by your and the user’s preferences. Let’s consider some kinds of behaviours that model providers would have really wanted to know about before deployments. I think many of these boil down to mis-prioritisation of competing preferences by the model.</p>
+<ul>
+<li><strong>hallucination/confabulation</strong>: completing user request &gt; correctness</li>
+<li><strong>sycophancy</strong>: getting the user’s approval &gt; correctness<span class="sidenote-number">
+      <small class="sidenote">E.g. <a href="https://openai.com/index/sycophancy-in-gpt-4o/">GPT-4o
+sycophancy update</a>, <a
+href="https://www.wsj.com/tech/ai/chatgpt-chatbot-psychology-manic-episodes-57452d14">ChatGPT-induced
+psychosis</a>, <a href="https://arxiv.org/abs/2505.13995">ELEPHANT
+benchmark</a>.</small>
+    </span></li>
+<li><strong>jailbreaks/prompt injection</strong>: completing user/injected request &gt; provider/user preferences<span class="sidenote-number">
+      <small class="sidenote">Cf. instruction hierarchy training in <a
+href="https://arxiv.org/abs/2404.13208">Wallace et al. (2024)</a> as a
+mitigation technique.</small>
+    </span></li>
+<li><strong>harmful/rude behaviour to the user</strong>: failure to internalise deployer preferences<span class="sidenote-number">
+      <small class="sidenote">E.g. <a
+href="https://www.cbsnews.com/news/google-ai-chatbot-threatening-message-human-please-die/">Gemini
+telling a user to kill themselves</a>.</small>
+    </span></li>
+</ul>
+<p>There is another class of failures, which might rather be skill issue on the model provider’s part during pretraining (i.e. the model is just not smart): miscounting number of <em>r</em>’s in <em>strawberry</em>, not obeying user-provided format constraints (“respond in JSON”), thinking 9.9 &lt; 9.11.</p>
+<p>However, they could also arise from a failure to understand the user request, which would be a post-training issue and not reflective of the base model’s capabilities.<span class="sidenote-number">
+      <small class="sidenote">The 9.9 &lt; 9.11 thing is interesting. Results from <a
+href="https://transluce.org/observability-interface#example-1">Transluce’s
+Monitor</a> make it seem like Llama is parsing it as a date or Bible
+verse rather than a number, and intervening on the implicated neurons
+fixes it, so the model <em>could</em> answer correctly but somehow
+interprets the request wrong. Surely this could be fixed in
+post-training?</small>
+    </span> Additionally, pretraining issues are nontrivial to fix — you need more compute, better data, or fundamental advances in language modelling research.</p>
+<p>In terms of value vs. fixability, it seems that the most useful thing to have would be just <em>know</em> the entire distribution of behaviours where the model deviates from your expectations, because this information could directly inform your next attempt at post-training.</p>
+<h2 id="i-have-no-idea-what-interpretability-means">I have no idea what interpretability means</h2>
+<p>What do we hope to get out of interpretability? The original aim (pre-AI safety version of the field) was to get an explanation for the decisions of blackbox machine learning systems. The motivation is “goals like accountability, trust, fairness, safety, and reliability” (<a href="https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00254/43503/Analysis-Methods-in-Neural-Language-Processing-A">Belinkov and Glass, 2019</a>) with respect to language systems deployed in the real world.</p>
+<p>“Mechanistic interpretability” seems at first to be totally different (= “let’s reverse-engineer the localised and algorithmic structure underlying behaviours in NNs”) but the ultimate agenda is no different: consider <strong>enumerative safety</strong>, where the plan is to</p>
+<ol type="1">
+<li>use interp to find all the atomic model components [features, circuits, etc.]</li>
+<li>check which ones are unsafe</li>
+<li>???<span class="sidenote-number">
+      <small class="sidenote">I actually can’t find a specific account of the implementation
+anywhere, but presumably it’s a post-post-training modification of a
+model to be safe by removing undesired mechanisms; something like
+steering vectors but more sophisticated. For more on enumerative safety:
+<a
+href="https://transformer-circuits.pub/2022/toy_model/index.html#strategic">Elhage
+et al. (2022)</a>, <a
+href="https://www.lesswrong.com/posts/uvEyizLAGykH8LwMx/fundamental-vs-applied-mechanistic-interpretability-research#fnrefcm0bgmrcoae">Sharkey
+(2024)</a> for some similar but differently-named ideas, <a
+href="https://www.alignmentforum.org/posts/LNA8mubrByG7SFacm/against-almost-every-theory-of-impact-of-interpretability-1">Segerie
+(2023)</a> for criticism that I largely agree with.</small>
+    </span></li>
+<li>profit</li>
+</ol>
+<p>Again the application is auditing the model for the goal of safety. The difference from prior manifestations of interpretability is only the <em>methodology</em>, not the motivation.</p>
+<p>It seems to me that we’ve become so used to defining each of our types of interpretability by our <em>methodological</em> commitments that we lose sight of the motivations, which are as a result quite poorly defined. For example, I can reliably find that the explicit goal of <em>mechanistic</em> interpretability according to its practitioners is reverse-engineering NNs, but <strong>why</strong> we would want to reverse-engineer NNs is poorly documented.</p>
+<p>It seems that interpretability is a broad collection of methodologies (saliency maps, LIME, Shapley values, SAEs, autointerp pipelines, probes, etc.) that all try to understand how blackbox systems works, motivated by <strong>answering whether we can trust and rely on those systems</strong>: more narrowly whether, at deployment, they will be safe, they will be unbiased, they will generalise, etc.</p>
+<p>Besides the grab bag above, we already have another ubiquitous technique for understanding whether we can trust an AI system: it’s called <strong>evaluating accuracy on the test set</strong>. Insofar interpretability is different from evaluation, it’s that it deals in non-numerical analyses that don’t (traditionally) easily lend themselves to reporting as a single number in a table.<span class="sidenote-number">
+      <small class="sidenote"><a
+href="https://transformer-circuits.pub/2024/qualitative-essay/index.html">Olah
+and Jermyn (2024)</a> have been arguing that interpretability is more
+qualitative than we’d want from a science because it is
+pre-paradigmatic. I don’t think this is the case, I just think the
+insights we want <em>are</em> qualitative, since LLMs are
+people-simulators and we need to somehow describe their behaviours
+beyond eval metrics — still, they rightly point out the insufficiency of
+summary statistics for answering the questions we care about.</small>
+    </span></p>
+<p>There’s also a historical point: LLM interp as a field is obsessed with visualisation, perhaps due to its origins in computer vision which easily lends itself to analysis techniques that go beyond performance numbers: <a href="https://en.wikipedia.org/wiki/Saliency_map">saliency maps</a>, <a href="https://colah.github.io/posts/2017-03-Distill/">Chris Olah and Distill</a>, collaboration between Anthropic interp team and the <a href="https://insight.seas.harvard.edu/">Harvard Insight + Interaction Lab</a>. Visualisation is all about trying to convey hard-to-summarise metrics to human beings!</p>
+<p>And by the way, this isn’t a novel take: <a href="https://github.com/Eric-Wallace/interpretability-tutorial-emnlp2020">Wallace et al. (2022)</a> motivate interpretability by claiming “looking at metrics is not enough”. Maybe this is a standard way to think about interpretability for some people, but I personally spent the past couple years too enamoured by all the neat methods we’ve come up with to stop and think about what the point of all this is. I suspect I am not alone in this!</p>
+<h2 id="so-what-should-interpretability-researchers-do">So what should interpretability researchers do?</h2>
+<p>If we take the goal of interpretability to be to assess whether or not a blackbox AI system is trustworthy, then the research directions we ought to pursue are clear but also different from what’s hot in interpretability research these days. We want simple, high-leverage methods that tell us useful things about our system’s behaviour. The findings should inform human beings<span class="sidenote-number">
+      <small class="sidenote">The ML practitioner who wants advice for the next attempt at
+post-training, end users who want to understand a system’s reliability,
+lawmakers who request an audit to assess whether the model provider did
+their due diligence, etc.</small>
+    </span> and thus need to be human-readable. Ambitiously, we should also try to make AI systems more trustworthy using our findings.</p>
+<p>This naturally suggests incorporating language models into the evaluation pipeline, since they can simulate humans at scale, generate human-readable analysis, and enable summarising text analogous to how we already summarise numerical metrics. LMs are the right interface between lots of data and human beings. Maybe this results in a <strong>bitter lesson of interpretability</strong>: methods which can take advantage of LM scalability (running on more examples, or future progress in LM capabilities) are higher-leverage than methods which cannot. Some methods that fit this bill are:</p>
+<ul>
+<li><strong>LM-based text analysis</strong>: <a href="https://transluce.org/introducing-docent">Docent</a>, <a href="https://arxiv.org/abs/2410.12851">VibeCheck [Dunlap et al., 2025]</a>, bunch of dataset explanation papers by <a href="https://ruiqi-zhong.github.io/">Ruiqi Zhong</a></li>
+<li><strong>automatic interpretability</strong>: <a href="https://transluce.org/neuron-descriptions">Choi et al. (2024)</a>, <a href="https://arxiv.org/pdf/2410.13928">Paulo et al. (2024)</a>, <a href="https://arxiv.org/pdf/2404.14394">Shaham et al. (2025)</a>, maybe <a href="https://arxiv.org/abs/2501.17148">supervised dictionary learning in AxBench [Wu et al., 2025]</a> which leverages synthetic data</li>
+<li><strong>RL elicitation</strong>: <a href="https://transluce.org/pathological-behaviors">Chowdhury et al. (2025)</a>, <a href="https://transluce.org/automated-elicitation">Li et al. (2024)</a>; however, fixing reward hacking is still human-bound?</li>
+</ul>
+<p>Causal intervention methods don’t <em>a priori</em> scale, since they require clean paired data for isolating the behaviour of interest, and that data is created by humans so far. But perhaps synthetic data, or including causal interventions in a pipeline that does scalably find behaviours,<span class="sidenote-number">
+      <small class="sidenote">For example, Anthropic’s <a
+href="https://transformer-circuits.pub/2025/attribution-graphs/biology.html">CLT
+circuits</a> can be scalably (if quite slowly) run on a bunch of data,
+but at the end of the day they still sanity-check their findings with
+causal interventions using manually-created pairs of examples.</small>
+    </span> can remedy this deficiency.</p>
+<p>In general, though, it’s hard to tell if mechanistic methods have much value in this new framing of interpretability. I can discover a lot of weird behaviours cheaply with automatic analysis and RL elicitation, and knowing about those behaviours is certainly valuable for establishing trust (or lack thereof). To go about fixing those behaviours, I would probably ablate my post-training datamix, maybe find bad data by using those same methods and filter it out. Why do I care about mechanisms implementing those behaviours as long as I can fix them? Even an interp-style fix like steering vectors doesn’t require reverse-engineering the model to learn!</p>
+<p>There are a few demos of causal interventions for fixing undesired model behaviour: <a href="https://transluce.org/observability-interface#example-1">neuron-level interventions in Transluce’s Monitor</a>, <a href="https://arxiv.org/abs/2403.19647">SHIFT in Marks et al. (2025)</a>, the whole steering vectors literature. But none of these methods are getting deployed in production,<span class="sidenote-number">
+      <small class="sidenote">I see random people online sometimes claiming that Anthropic uses
+steering in prod. My feeling is that if they did, there would a massive
+celebratory blogpost given their commitment to interpretability. But no
+such announcement exists even after Golden Gate Claude, so my hunch is
+even Anthropic doesn’t do anything more mechanistic than <a
+href="https://arxiv.org/abs/2501.18837">probing</a> in prod.</small>
+    </span> and my intuition is that if you have the resources, you’d much prefer redoing post-training over applying a patch at inference-time; we already know from the model editing (cf. <a href="https://arxiv.org/abs/2410.17194">Nishi et al., 2025</a>) and unlearning (<a href="https://ai.stanford.edu/~kzliu/blog/unlearning">Liu et al., 2024</a>) literatures that inference-time fixes are highly brittle and no good substitutes for changing the training data.</p>
+<p>Another problem is that the mechanistic interpretability literature has been too focused on very concrete behaviours whose underlying algorithms we already have hypotheses for: simple mathematical operations, basic linguistic phenomena. For higher-level intelligent behaviours like refusal, sycophancy or non-human-like failures like hallucination, we don’t have a theory to start with and so the progress is not that compelling. I’m not satisfied by SAE-using work in this area; we do see signs of life in <a href="https://transformer-circuits.pub/2025/attribution-graphs/biology.html">CLT circuits</a> for more complex behaviour (e.g. rhyme planning in poetry, medical diagnosis), but it’s still very far from providing useful recommendations on how to fix failures in a real production model. Given the research effort, something like dataset analysis with an LLM is far more efficient at giving insight compared to mechanistic interpretability. Even if we find a bad circuit that explains a model failure, we’re still just going to try and retrain the model, not patch the circuit — there’s no difference between finding that bad circuit vs. knowing about systematic instances of that behaviour in terms of what we end up doing to fix it!</p>
+<p>This line of thinking also suggests that we’re overlooking data attribution as a research direction. If I can cheaply (and current methods don’t seem cheap) tell which training data caused a behaviour, that can actually help me fix the next (pre/post)-training run I do. But perhaps finding a bad circuit =&gt; enumerating where that circuit is activated in the data mix achieves the same end.</p>
+<p>Overall, this thinking makes me believe we have unnecessarily prioritised <em>mechanistic</em> interpretability. If I can understand the distribution over behaviours of a model without opening the blackbox, the practical benefit seems about the same as if I had understood the underlying circuits. Blackbox techniques, even if they somehow are worse, are still much cheaper and more scalable. Beyond scientific curiosity (which I strongly believe in the importance of), what value does full reverse-engineering serve? I think it’s very unclear.</p>
+</body>
+
+</html>
