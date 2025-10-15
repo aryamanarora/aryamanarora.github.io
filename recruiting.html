@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aryaman Arora</title>
+  <meta name="description" content="Aryaman Arora: NLP Researcher">
+  <meta property="og:title" content="Aryaman Arora">
+  <meta property="og:description" content="NLP Researcher">
+  <link rel="canonical" href="https://aryamanarora.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@aryaman2020">
+  <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+  <p style="font-size: 24px; font-weight: 600;"><a href="index.html">Aryaman Arora</a> » Recruiting</p>
+  <p>
+    I'm Aryaman, a third-year Ph.D. student at Stanford University, and a part-time researcher at <a href="https://transluce.org/">Transluce</a>. I am looking for students who want to work on interpretability for language models! I'm most interested in coming up with <b>new applications of interpretability to the entire LM training stack</b>, towards the goal of improving models via better understanding.
+  </p>
+  <p>
+    You might be a good fit for this if you are:
+    <ul>
+      <li>excited about interpretability (regardless of prior experience in the area, or research in general!)</li>
+      <li>have at least a little bit of background in:<ul>
+        <li>PyTorch / other deep learning frameworks / software development</li>
+        <li>math for deep learning (linear algebra / probability / calculus)</li>
+        <li>linguistics</li>
+      </ul>
+    </ul>
+  </p>
+  <p><b>Logistics.</b> We will meet at least once a week to discuss the project. I prefer in-person, but am willing to advise remote students as well. I will be responsible for getting you compute for the project. I won't be able to compensate you, but (for Stanford students) I will see if RAship or course credits are possible if you do well.</p>
+  <p><b>Expected outcome.</b> A publication in a top-tier AI/NLP conference (e.g. NeurIPS / ACL / ICML / ICLR).</p>
+  <p><b>Working style.</b> I currently prefer students who have high agency who can work on low-level implementation independently.<br>In the past, I've done more collaborative work with students but that usually requires far more time from me than I have this quarter; I'd instead like to take on many students!</p>
+  <h2>How to apply</h2>
+  <p>You have two tasks:
+    <ol>
+      <li>Create a small Jupyter notebook (less than 10 code cells, ideally) that reproduces a single experiment or result from an existing interpretability paper.
+        <span class="sidenote-number"><small class="sidenote">For inspiration, check out <a href="https://stanfordnlp.github.io/pyvene/tutorials/advanced_tutorials/Causal_Tracing.html">my <code>pyvene</code> tutorial replicating causal tracing from ROME</a>, <a href="https://colab.research.google.com/github/stanfordnlp/pyvene/blob/main/quiz/01_memorisation_subspace.ipynb">Zhengxuan Wu's quiz on memorisation subspaces</a>, <a href="https://nnsight.net/applied_tutorials/"><code>nnsight</code> mini-replications of papers</a>. Also, feel free to use a small language model like <code>gpt2</code> for this, if you don't have GPUs.</small></span> Feel free to use LM assistance to write the code, I'm more interested in what you picked to investigate; negative results are okay.</li>
+      <li>Submit your notebook along with some info about yourself <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJp6iRQT0xBQ1LTaax5O9dtx2oh3cqCO06eC0GTYameumszg/viewform?usp=dialog"><b>here</b></a>.</li>
+    </ol>
+  </p>
+  <h2>Project ideas</h2>
+  <p>This is a sample of immediate ideas I have in mind, but I'm open to novel ideas or even just exploring a general direction for a bit to find interesting problems.</p>
+  <ul>
+    <li>I recently did some work on <a href="https://arxiv.org/abs/2505.15105">how different architectures perform associative recall</a>. We can (a) come up with more variants of AR to study, informed by formal language theory; or (b) analyse the feature geometry of AR across architectures, particularly to see if <a href="https://arxiv.org/abs/2408.10920">non-linear representations</a> are involved in some way.</li>
+    <li>Thinking Machines released <a href="https://thinkingmachines.ai/blog/lora/">a nice blogpost analysing LoRA</a>. Let's repeat these experiments with <a href="https://arxiv.org/abs/2404.03592">ReFT</a>, particularly on thinking tasks, and come up with ideas to improve long-form coherency when intervening on representations.</li>
+    <li>Can we train interpretability agents with reinforcement learning? What primitives can we provide to them that will surface insights about models (SAE features seem to be the wrong choice, see <a href="https://alignment.anthropic.com/2025/automated-auditing/">Anthropic's automated auditing</a>)? I have more ideas on this which I can share if you're interested.</li>
+    <li>How can we improve <a href="https://arxiv.org/abs/2303.02536">distributed alignment search</a> using the notions contributed by <a href="https://arxiv.org/abs/2307.15054">this paper</a>?</li>
+    <li>Anything around pretraining data filtering, data/model diffing, with interpretability methods in the loop; I have some ideas on this which I can share if you're interested.</li>
+  </ul>
+</body>
+
+</html>
