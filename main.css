@@ -1,11 +1,11 @@
 body {
     font-family: Optima, "Candara", "URW Classico", sans-serif;
-    line-height: 1.4;
-    font-size: 16px;
+    line-height: 1.55;
+    font-size: 17px;
     margin: 50px auto;
     max-width: 710px;
     padding: 0 10px;
-    color: #000;
+    color: #1a1a1a;
     background: #fff;
 }
 
@@ -13,25 +13,125 @@ p {
     margin-bottom: 1em;
 }
 
+/* Text selection */
+::selection {
+    background: rgba(59, 107, 156, 0.15);
+    color: inherit;
+}
+
 a {
     text-decoration: none;
-    color: #595fca; /* deep blue, readable on white */
+    color: #3b6b9c;
     font-weight: 500;
-    background-color: rgba(89, 95, 202, 0.05);
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #264a6e;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+}
+
+.site-title {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* Reading progress bar */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 6px;
+    background: #3b6b9c;
+    z-index: 1000;
+    transition: width 0.1s linear;
+}
+
+/* Photo duotone */
+.photo {
+    float: right;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin: 0 0 20px 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    clear: right;
+    filter: grayscale(1);
+    transition: filter 0.4s ease;
+}
+
+.photo:hover {
+    filter: grayscale(0);
+}
+
+/* Paper entry hover */
+.paper-entry {
+    padding-left: 0.4em;
+    border-left: 2px solid transparent;
+    transition: border-color 0.2s ease;
+    margin-left: -0.4em;
+}
+
+.paper-entry:hover {
+    border-left-color: #3b6b9c;
+}
+
+.site-title .breadcrumb {
+    font-weight: 400;
+    color: #ccc;
+    display: inline-block;
+    animation: breadcrumb-fade 0.6s ease both;
+    transition: color 0.2s ease;
+}
+
+.site-title .breadcrumb:nth-of-type(1) {
+    animation-delay: 0.1s;
+}
+
+.site-title .breadcrumb:nth-of-type(2) {
+    animation-delay: 0.25s;
+}
+
+@keyframes breadcrumb-fade {
+    from {
+        opacity: 0;
+        transform: translateX(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+h2 {
+    margin-top: 2.5em;
+    margin-bottom: 0.5em;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+h2:first-of-type {
+    margin-top: 1.5em;
 }
 
 .award {
-    border: 1.5px solid #5e60e4;
-    color: black;
-    font-style: normal;
+    border: 1px solid #b0b0b0;
+    color: #555;
+    font-style: italic;
     font-weight: 400;
     text-decoration: none;
-    padding-left: 3px;
-    padding-right: 3px;
-    border-radius: 5px;
-    box-shadow: 0 0 3px var(--secondary);
+    padding: 1px 5px;
+    border-radius: 4px;
     font-size: smaller;
-    font-style: italic;
+}
+
+.section-heading {
+    margin-top: 2.5em;
 }
 
 .authors {
@@ -44,6 +144,110 @@ img {
     max-width: 100%;
 }
 
+/* Blog post list */
+.blog-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5em 0;
+}
+
+.blog-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 1em;
+    padding: 0.4em 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.blog-list li:last-child {
+    border-bottom: none;
+}
+
+.blog-list .date {
+    font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    font-size: 0.8em;
+    color: #999;
+    flex-shrink: 0;
+    letter-spacing: -0.02em;
+}
+
+/* Colophon */
+.colophon {
+    margin-top: 5em;
+    padding-top: 1.5em;
+    text-align: center;
+    color: #aaa;
+    font-size: 0.85em;
+}
+
+.colophon .flourish {
+    display: block;
+    width: 180px;
+    height: 20px;
+    margin: 0 auto 1em;
+    color: #ccc;
+}
+
+.colophon a {
+    color: #aaa;
+    font-weight: 400;
+}
+
+.colophon a:hover {
+    color: #888;
+}
+
+/* Floating TOC */
+.floating-toc {
+    position: fixed;
+    top: 50px;
+    left: max(10px, calc((100vw - 710px) / 2 - 220px));
+    width: 180px;
+    font-size: 0.75em;
+    line-height: 1.4;
+    opacity: 0;
+    animation: breadcrumb-fade 0.6s ease 0.3s both;
+}
+
+.floating-toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.floating-toc li {
+    padding: 0.25em 0 0.25em 0.8em;
+}
+
+.floating-toc .toc-h3 {
+    padding-left: 1.6em;
+}
+
+.floating-toc a {
+    color: #aaa;
+    font-weight: 400;
+    transition: color 0.2s ease;
+}
+
+.floating-toc a:hover {
+    color: #3b6b9c;
+    text-decoration: none;
+}
+
+.floating-toc a.active {
+    color: #3b6b9c;
+    font-weight: 500;
+}
+
+/* Hide TOC on narrow viewports where it would overlap content */
+@media (max-width: 1100px) {
+    .floating-toc {
+        display: none;
+    }
+}
+
+/* Sidenotes */
 .sidenote {
     font-size: 80%;
     position: relative;
@@ -103,6 +307,7 @@ body {
 @media (min-width: 1400px) {
     /* Highlight the sidenote when mouse hovers on the sidenote number in body. */
     .sidenote-number:hover .sidenote {
-        background-color: yellow;
+        background-color: rgba(59, 107, 156, 0.08);
+        border-radius: 3px;
     }
 }
