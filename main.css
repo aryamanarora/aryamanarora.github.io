@@ -38,6 +38,21 @@ a:hover {
     font-weight: 600;
 }
 
+#name-cycle {
+    display: inline-block;
+    transition: opacity 0.3s ease, color 0.2s ease;
+    cursor: default;
+    color: #999;
+}
+
+#name-lang {
+    color: #aaa;
+    font-size: 0.75em;
+    font-weight: 400;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
 /* Reading progress bar */
 .reading-progress {
     position: fixed;
