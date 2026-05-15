@@ -127,6 +127,79 @@ if (document.querySelector('.reading-progress')) {
   }
 }
 
+/* Paper visualizations (papers page only) */
+function buildBarChart(container, entries, maxCount) {
+  const chart = document.createElement('div');
+  chart.className = 'viz-bars';
+  entries.forEach(([label, count]) => {
+    const col = document.createElement('div');
+    col.className = 'viz-col';
+
+    const barArea = document.createElement('div');
+    barArea.className = 'viz-bar-area';
+
+    const countEl = document.createElement('span');
+    countEl.className = 'viz-count';
+    countEl.textContent = count;
+
+    const bar = document.createElement('div');
+    bar.className = 'viz-bar';
+    bar.style.height = Math.max(4, (count / maxCount) * 100) + 'px';
+
+    barArea.appendChild(countEl);
+    barArea.appendChild(bar);
+
+    const nameEl = document.createElement('span');
+    nameEl.className = 'viz-label';
+    nameEl.textContent = label;
+
+    col.appendChild(barArea);
+    col.appendChild(nameEl);
+    chart.appendChild(col);
+  });
+  container.appendChild(chart);
+}
+
+const coauthorViz = document.getElementById('coauthor-viz');
+if (coauthorViz) {
+  const authorSpans = document.querySelectorAll('.paper-entry .authors');
+  const coauthorCounts = {};
+  const canonicalNames = {
+    'Christopher D. Manning': 'Christopher Manning',
+    'Noah D. Goodman': 'Noah Goodman',
+  };
+  let paperCount = 0;
+
+  authorSpans.forEach(span => {
+    paperCount++;
+    let authorText = '';
+    for (const node of span.childNodes) {
+      if (node.nodeName === 'BR') break;
+      if (node.nodeType === Node.TEXT_NODE) authorText += node.textContent;
+      else if (node.nodeName === 'STRONG') authorText += node.textContent;
+    }
+    authorText.split(',').forEach(raw => {
+      let name = raw.trim().replace(/\s+/g, ' ').replace(/^\s*and\s+/i, '').replace(/\*/g, '').trim();
+      if (name && name !== 'Aryaman Arora' && !name.includes('...') && name !== '...' && name.length > 1) {
+        name = canonicalNames[name] || name;
+        coauthorCounts[name] = (coauthorCounts[name] || 0) + 1;
+      }
+    });
+  });
+
+  const sorted = Object.entries(coauthorCounts).sort((a, b) => b[1] - a[1]);
+  const topN = sorted.filter(([, count]) => count >= 2);
+
+  const stat = document.createElement('p');
+  stat.className = 'viz-stat';
+  stat.innerHTML = '<strong>' + sorted.length + '</strong> unique coauthors across <strong>' + paperCount + '</strong> papers';
+  coauthorViz.appendChild(stat);
+
+  if (topN.length > 0) {
+    buildBarChart(coauthorViz, topN, topN[0][1]);
+  }
+}
+
 /* Reading progress indicator (blog posts only) */
 const progress = document.querySelector('.reading-progress');
 if (progress) {
