@@ -210,3 +210,105 @@ if (progress) {
     }
   }, { passive: true });
 }
+
+/* Colophon circuit: three hidden layers feeding the tokenized name; hover a token to trace it */
+document.addEventListener('DOMContentLoaded', () => {
+  const root = document.querySelector('.colophon');
+  const svg = root && root.querySelector('svg.circuit');
+  if (!svg) return;
+  const toks = [...root.querySelectorAll('.tok')];
+  const NS = 'http://www.w3.org/2000/svg';
+  const SIZES = [5, 6, 6]; // hidden layers
+  const PAD = [70, 45, 20]; // hidden layers fan out wider than the tokens
+  let layers, edges;
+
+  function rng(seed) {
+    return () => {
+      seed = (seed + 0x6d2b79f5) | 0;
+      let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function el(tag, attrs) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  function build() {
+    const rand = rng(116445);
+    const sb = svg.getBoundingClientRect();
+    const tb = toks.map(t => t.getBoundingClientRect());
+    const lo = Math.min(...tb.map(b => b.left)) - sb.left;
+    const hi = Math.max(...tb.map(b => b.right)) - sb.left;
+    const H = sb.height;
+    svg.innerHTML = '';
+
+    layers = SIZES.map((n, l) =>
+      Array.from({ length: n }, (_, i) => ({
+        x: lo - PAD[l] + ((hi - lo + 2 * PAD[l]) * (i + 0.5)) / n + (rand() - 0.5) * 6,
+        y: 4 + l * ((H - 8) / 3),
+      }))
+    );
+    layers.push(tb.map(b => ({ x: (b.left + b.right) / 2 - sb.left, y: H })));
+
+    // Each node keeps only its 2-3 strongest inputs
+    edges = [];
+    for (let l = 0; l < layers.length - 1; l++) {
+      layers[l + 1].forEach((b, j) => {
+        layers[l]
+          .map((a, i) => ({ a, i, w: rand() }))
+          .sort((p, q) => q.w - p.w)
+          .slice(0, 2 + Math.floor(rand() * 2))
+          .forEach(({ a, i, w }, rank) => {
+            w = w / (rank + 1);
+            const line = el('line', { x1: a.x, y1: a.y, x2: b.x, y2: b.y, 'stroke-width': 0.3 + 1.1 * w });
+            svg.appendChild(line);
+            edges.push({ l, i, j, w, line });
+          });
+      });
+    }
+    layers.slice(0, -1).forEach(layer =>
+      layer.forEach(n => {
+        n.circle = el('circle', { cx: n.x, cy: n.y, r: 2 });
+        svg.appendChild(n.circle);
+      })
+    );
+  }
+
+  // Walk back from a token along the strongest incoming edges
+  function trace(j) {
+    root.classList.add('tracing');
+    let frontier = new Set([j]);
+    for (let l = layers.length - 2; l >= 0; l--) {
+      const next = new Set();
+      frontier.forEach(t => {
+        edges
+          .filter(e => e.l === l && e.j === t)
+          .sort((a, b) => b.w - a.w)
+          .slice(0, l === layers.length - 2 ? 2 : 1)
+          .forEach(e => {
+            e.line.classList.add('hot');
+            next.add(e.i);
+          });
+      });
+      next.forEach(i => layers[l][i].circle.classList.add('hot'));
+      frontier = next;
+    }
+  }
+
+  function clear() {
+    root.classList.remove('tracing');
+    svg.querySelectorAll('.hot').forEach(e => e.classList.remove('hot'));
+  }
+
+  toks.forEach((t, j) => {
+    t.addEventListener('mouseenter', () => trace(j));
+    t.addEventListener('mouseleave', clear);
+  });
+  build();
+  document.fonts.ready.then(build);
+  window.addEventListener('resize', build);
+});

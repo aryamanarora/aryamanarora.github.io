@@ -186,7 +186,7 @@ img {
     letter-spacing: -0.02em;
 }
 
-/* Colophon */
+/* Colophon: a small circuit feeding the tokenized name */
 .colophon {
     margin-top: 5em;
     padding-top: 1.5em;
@@ -195,21 +195,82 @@ img {
     font-size: 0.85em;
 }
 
-.colophon .flourish {
+.colophon svg.circuit {
     display: block;
-    width: 180px;
-    height: 20px;
-    margin: 0 auto 1em;
-    color: #ccc;
+    width: 100%;
+    height: 84px;
+    overflow: visible;
+    margin: 0 0 0.35em;
+    color: #ddd;
 }
 
-.colophon a {
-    color: #aaa;
-    font-weight: 400;
+.colophon svg.circuit line {
+    stroke: currentColor;
+    stroke-linecap: round;
+    transition: stroke 0.25s ease, opacity 0.25s ease;
 }
 
-.colophon a:hover {
+.colophon svg.circuit circle {
+    fill: #fff;
+    stroke: #ccc;
+    stroke-width: 0.8;
+    transition: fill 0.25s ease, stroke 0.25s ease;
+}
+
+.colophon.tracing svg.circuit line {
+    opacity: 0.25;
+}
+
+.colophon svg.circuit .hot {
+    stroke: #3b6b9c;
+    opacity: 1 !important;
+}
+
+.colophon svg.circuit circle.hot {
+    fill: #3b6b9c;
+}
+
+.colophon .tok {
+    border-radius: 2px;
+    padding: 0.05em 0;
+    cursor: default;
+    position: relative;
+}
+
+.colophon .tok:nth-child(5n + 1) { background: rgba(59, 107, 156, 0.18); }
+.colophon .tok:nth-child(5n + 2) { background: rgba(181, 101, 74, 0.18); }
+.colophon .tok:nth-child(5n + 3) { background: rgba(120, 150, 90, 0.2); }
+.colophon .tok:nth-child(5n + 4) { background: rgba(150, 110, 170, 0.18); }
+.colophon .tok:nth-child(5n + 5) { background: rgba(200, 160, 60, 0.2); }
+
+.colophon .tok:hover {
+    outline: 1px solid #ccc;
+}
+
+/* Top-k next-token predictions */
+.colophon .tok::after {
+    content: attr(data-p);
+    position: absolute;
+    left: 50%;
+    top: 1.7em;
+    z-index: 1;
+    transform: translateX(-50%);
+    white-space: pre;
+    text-align: left;
+    font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    font-size: 0.8em;
     color: #888;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    padding: 0.3em 0.5em;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.colophon .tok:hover::after {
+    opacity: 1;
 }
 
 /* Floating TOC */
