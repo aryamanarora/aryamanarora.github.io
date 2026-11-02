@@ -25,16 +25,13 @@
   <p class="site-title"><a href="/index.html">Aryaman Arora</a> <span class="breadcrumb">/</span> <a href="/blog.html">Blog</a> <span class="breadcrumb">/</span> Reorient interpretability towards improving the model training process</p>
 
 <p>This blogpost is my attempt to understand the state of interpretability research and to figure out what is worth working on. This is a response to the widespread existential confusion in our field, as well as my own uncertainty about what to dedicate my efforts to.<span class="sidenote-number">
-      <small class="sidenote">Neel Nanda thinks we should do <a
+      <small class="sidenote">For example, Neel Nanda thinks we should do <a
 href="https://www.alignmentforum.org/posts/StENzDcD3kpfGJssR/a-pragmatic-vision-for-interpretability">pragmatic
 interpretability</a>, Leo Gao thinks we should do <a
 href="https://www.alignmentforum.org/posts/Hy6PX43HGgmfiTaKu/an-ambitious-vision-for-interpretability">ambitious
 interpretability</a>, Jacob Steinhardt thinks we should do <a
 href="https://www.alignmentforum.org/posts/qkhwh4AdG7kXgELCD/scalable-end-to-end-interpretability">scalable
-end-to-end interpretability</a>. Stephen Casper thinks <a
-href="https://x.com/StephenLCasper/status/2017305076461687196?s=20">interp
-research has been a waste</a>, and frankly he has some good points that
-haven’t been satisfactorily addressed.</small>
+end-to-end interpretability</a>.</small>
     </span></p>
 <p>My basic argument is that, while interp has made some meaningful progress, the goal of comprehensively reverse-engineering behaviours has been misguided because reverse-engineering has not led to reliable <em>interventions</em> on model behaviour. Instead, non-interp interventions that have succeeded are done on decisions about training: data, architectures, and learning algorithms. Reorienting from the reverse-engineering agenda to a data/arch/learning-centric agenda is necessary to make progress on the thorny safety and controllability problems that we actually care about, and also to achieve meaningful scientific understanding that isn’t tricking ourselves.</p>
 <p>I’ll argue using many pieces of evidence that existing justifications for the reverse-engineering agenda are not compelling, but I also claim that redirecting known techniques that have arisen from that agenda to a better agenda is possible. I hope this blogpost clears up some confusions and encourages more productive discussion in our field.</p>

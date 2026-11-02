@@ -312,3 +312,265 @@ document.addEventListener('DOMContentLoaded', () => {
   document.fonts.ready.then(build);
   window.addEventListener('resize', build);
 });
+
+/* Travel globe (homepage only): places from my travelmap, spun on an orthographic projection */
+const globe = document.querySelector('.travel-globe');
+if (globe) {
+  const LIBS = [
+    'https://cdn.jsdelivr.net/npm/d3-array@3',
+    'https://cdn.jsdelivr.net/npm/d3-geo@3',
+    'https://cdn.jsdelivr.net/npm/topojson-client@3',
+  ];
+  const WORLD = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+  const WORLD_FINE = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json';
+  const MAX_ZOOM = 12;
+  const BLUE = '59, 107, 156';
+
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = src;
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+
+  async function init() {
+    for (const src of LIBS) await loadScript(src);
+    const [world, travels] = await Promise.all([
+      fetch(WORLD).then(r => r.json()),
+      fetch('static/travels.json').then(r => r.json()),
+    ]);
+
+    const canvas = globe.querySelector('canvas');
+    const caption = globe.querySelector('.globe-caption');
+    const ctx = canvas.getContext('2d');
+    const visitedIds = new Set(travels.countries);
+    let countries, visited, borders;
+    function setWorld(w) {
+      countries = topojson.feature(w, w.objects.countries);
+      visited = {
+        type: 'FeatureCollection',
+        features: countries.features.filter(f => visitedIds.has(+f.id)),
+      };
+      borders = topojson.mesh(w, w.objects.countries, (a, b) => a !== b);
+    }
+    setWorld(world);
+    const graticule = d3.geoGraticule10();
+    const places = travels.places.map(([name, lat, lon, n]) => ({ name, lat, lon, n }));
+    const trips = {
+      type: 'MultiLineString',
+      coordinates: travels.trips.map(([a, b]) => [
+        [places[a].lon, places[a].lat],
+        [places[b].lon, places[b].lat],
+      ]),
+    };
+
+    const projection = d3.geoOrthographic().rotate([35, -28]).clipAngle(90).precision(0.3);
+    const path = d3.geoPath(projection, ctx);
+    let size = 0;
+    let zoom = 1;
+    let hovered = null;
+    let fineRequested = false;
+
+    // Swap in the higher-resolution coastlines the first time someone zooms in
+    function setZoom(z) {
+      zoom = Math.max(1, Math.min(MAX_ZOOM, z));
+      projection.scale((size / 2 - 2) * zoom);
+      if (zoom > 2 && !fineRequested) {
+        fineRequested = true;
+        fetch(WORLD_FINE).then(r => r.json()).then(w => { setWorld(w); draw(); }).catch(() => {});
+      }
+    }
+
+    const summary =
+      '<strong>' + places.length + '</strong> places &middot; <strong>' +
+      travels.countries.length + '</strong> countries';
+    caption.innerHTML = summary;
+
+    function resize() {
+      const dpr = window.devicePixelRatio || 1;
+      size = canvas.clientWidth;
+      canvas.width = canvas.height = size * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      projection.translate([size / 2, size / 2]);
+      setZoom(zoom);
+      draw();
+    }
+
+    function isVisible(p) {
+      const r = projection.rotate();
+      return d3.geoDistance([p.lon, p.lat], [-r[0], -r[1]]) < Math.PI / 2 - 0.02;
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, size, size);
+      const sphere = { type: 'Sphere' };
+      // Zoomed in, the globe is seen through a round window the size of the full globe
+      const lens = () => ctx.arc(size / 2, size / 2, size / 2 - 2, 0, 2 * Math.PI);
+      ctx.save();
+      ctx.beginPath(); lens(); ctx.clip();
+
+      ctx.beginPath(); path(sphere);
+      ctx.fillStyle = '#fff'; ctx.fill();
+
+      ctx.beginPath(); path(graticule);
+      ctx.strokeStyle = '#f2f2f2'; ctx.lineWidth = 0.6; ctx.stroke();
+
+      ctx.beginPath(); path(countries);
+      ctx.fillStyle = '#ececec'; ctx.fill();
+
+      ctx.beginPath(); path(visited);
+      ctx.fillStyle = 'rgba(' + BLUE + ', 0.2)'; ctx.fill();
+
+      ctx.beginPath(); path(borders);
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 0.6; ctx.stroke();
+
+      ctx.beginPath(); path(trips);
+      ctx.strokeStyle = 'rgba(' + BLUE + ', 0.35)'; ctx.lineWidth = 0.7; ctx.stroke();
+
+      for (const p of places) {
+        if (!isVisible(p)) continue;
+        const [x, y] = projection([p.lon, p.lat]);
+        p.x = x; p.y = y;
+        ctx.beginPath();
+        ctx.arc(x, y, Math.min(1.4 + 0.45 * Math.sqrt(p.n), 5), 0, 2 * Math.PI);
+        ctx.fillStyle = 'rgba(' + BLUE + ', ' + (p === hovered ? 1 : 0.8) + ')';
+        ctx.fill();
+      }
+
+      if (hovered && isVisible(hovered)) {
+        ctx.beginPath();
+        ctx.arc(hovered.x, hovered.y, 8, 0, 2 * Math.PI);
+        ctx.strokeStyle = 'rgb(' + BLUE + ')'; ctx.lineWidth = 1; ctx.stroke();
+      }
+
+      ctx.restore();
+      ctx.beginPath(); zoom > 1 ? lens() : path(sphere);
+      ctx.strokeStyle = '#ddd'; ctx.lineWidth = 1; ctx.stroke();
+    }
+
+    // Slow spin while on screen; paused while the pointer is on the globe
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let onScreen = false, pointerIn = false, dragging = null, pinch = null, last = null;
+    const pointers = new Map();
+    function tick(t) {
+      if (last !== null && !pointerIn && !dragging && !still) {
+        const r = projection.rotate();
+        projection.rotate([r[0] + (t - last) * 0.004 / zoom, r[1]]);
+        draw();
+      }
+      last = t;
+      if (onScreen) requestAnimationFrame(tick);
+      else last = null;
+    }
+    new IntersectionObserver(([e]) => {
+      const was = onScreen;
+      onScreen = e.isIntersecting;
+      if (onScreen && !was) requestAnimationFrame(tick);
+    }).observe(canvas);
+
+    function nearest(x, y) {
+      let best = null, bestD = 10;
+      for (const p of places) {
+        if (!isVisible(p)) continue;
+        const d = Math.hypot(p.x - x, p.y - y);
+        if (d < bestD) { best = p; bestD = d; }
+      }
+      return best;
+    }
+
+    canvas.addEventListener('pointerenter', () => { pointerIn = true; });
+    canvas.addEventListener('pointerleave', () => {
+      pointerIn = false;
+      hovered = null;
+      caption.innerHTML = summary;
+      draw();
+    });
+    function startDrag() {
+      const [p] = pointers.values();
+      dragging = p ? { x: p.x, y: p.y, r: projection.rotate() } : null;
+    }
+    function startPinch() {
+      const [a, b] = pointers.values();
+      pinch = { d: Math.hypot(a.x - b.x, a.y - b.y), zoom };
+    }
+
+    canvas.addEventListener('pointerdown', e => {
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      canvas.setPointerCapture(e.pointerId);
+      canvas.classList.add('dragging');
+      if (pointers.size === 2) startPinch();
+      else startDrag();
+    });
+    function release(e) {
+      pointers.delete(e.pointerId);
+      pinch = null;
+      startDrag(); // a finger lifted mid-pinch keeps dragging from where it is
+      if (!dragging) canvas.classList.remove('dragging');
+      if (e.pointerType !== 'mouse') pointerIn = false;
+    }
+    canvas.addEventListener('pointerup', release);
+    canvas.addEventListener('pointercancel', release);
+    canvas.addEventListener('pointermove', e => {
+      if (pointers.has(e.pointerId)) pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pinch && pointers.size === 2) {
+        const [a, b] = pointers.values();
+        setZoom(pinch.zoom * Math.hypot(a.x - b.x, a.y - b.y) / pinch.d);
+      } else if (dragging) {
+        const k = 180 / (Math.PI * projection.scale());
+        const [l, p] = dragging.r;
+        projection.rotate([
+          l + (e.clientX - dragging.x) * k,
+          Math.max(-80, Math.min(80, p - (e.clientY - dragging.y) * k)),
+        ]);
+      } else {
+        const b = canvas.getBoundingClientRect();
+        hovered = nearest(e.clientX - b.left, e.clientY - b.top);
+        if (hovered) caption.textContent = hovered.name;
+        else caption.innerHTML = summary;
+      }
+      draw();
+    });
+
+    // Scroll or trackpad-pinch to zoom; at the limits the page scrolls as usual
+    canvas.addEventListener('wheel', e => {
+      const next = zoom * Math.exp(-e.deltaY * (e.ctrlKey ? 0.01 : 0.002));
+      if ((next > zoom && zoom >= MAX_ZOOM) || (next < zoom && zoom <= 1)) return;
+      e.preventDefault();
+      setZoom(next);
+      draw();
+    }, { passive: false });
+
+    // Double-click to fly to a spot and zoom in; double-click at full zoom to reset
+    canvas.addEventListener('dblclick', e => {
+      const b = canvas.getBoundingClientRect();
+      const target = projection.invert([e.clientX - b.left, e.clientY - b.top]);
+      const r0 = projection.rotate(), z0 = zoom;
+      const r1 = zoom >= MAX_ZOOM || !target || isNaN(target[0]) ? r0 : [-target[0], -target[1], 0];
+      const z1 = zoom >= MAX_ZOOM ? 1 : zoom * 2;
+      const interp = d3.geoInterpolate([-r0[0], -r0[1]], [-r1[0], -r1[1]]);
+      const t0 = performance.now();
+      (function step(now) {
+        const t = Math.min(1, (now - t0) / 500), ease = t * (2 - t);
+        const [lon, lat] = interp(ease);
+        projection.rotate([-lon, -lat]);
+        setZoom(z0 * Math.pow(z1 / z0, ease));
+        draw();
+        if (t < 1) requestAnimationFrame(step);
+      })(t0);
+    });
+
+    resize();
+    window.addEventListener('resize', resize);
+  }
+
+  // Only fetch the map libraries once the globe is close to scrolling into view
+  const lazy = new IntersectionObserver(([e]) => {
+    if (!e.isIntersecting) return;
+    lazy.disconnect();
+    init().catch(err => console.error('travel globe:', err));
+  }, { rootMargin: '400px' });
+  lazy.observe(globe);
+}

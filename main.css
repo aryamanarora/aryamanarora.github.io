@@ -186,6 +186,37 @@ img {
     letter-spacing: -0.02em;
 }
 
+/* Travel globe (homepage) */
+.travel-globe {
+    text-align: center;
+}
+
+.travel-globe canvas {
+    display: block;
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    cursor: grab;
+    touch-action: pan-y;
+}
+
+.travel-globe canvas.dragging {
+    cursor: grabbing;
+}
+
+.travel-globe .globe-caption {
+    font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    font-size: 0.75em;
+    color: #999;
+    margin-top: 0.8em;
+}
+
+.travel-globe .globe-caption strong {
+    color: #3b6b9c;
+    font-weight: 500;
+}
+
 /* Colophon: a small circuit feeding the tokenized name */
 .colophon {
     margin-top: 5em;
